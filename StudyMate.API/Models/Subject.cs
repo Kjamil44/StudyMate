@@ -1,9 +1,13 @@
-﻿using StudyMate.API.Enums;
+﻿using Marten.Schema;
+using StudyMate.API.Enums;
 
 namespace StudyMate.API.Models
 {
     public class Subject
     {
+        [ForeignKey(typeof(User))]
+        public Guid UserId { get; set; }
+        [Identity]
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -11,6 +15,5 @@ namespace StudyMate.API.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public Status Status { get; set; }
-        public Guid UserId { get; set; }
     }
 }
