@@ -82,7 +82,7 @@ const Register: React.FC = () => {
 
     
     <div className='container'>
-    <div className=''>
+    <div className='logo-container'>
         <img className='logo' src={Logo} alt='logo'/>
         <p className='slogan'>Stay on top of your studies with ease... <br />
         ... organize, prioritize and conquer with <span className='slogan-bold'>Study Mate!</span>
@@ -93,12 +93,12 @@ const Register: React.FC = () => {
         <div className='input-field__double'>
             <div className='input-field__double-container'>
                 <label htmlFor='name' className='label'>NAME</label>
-                <input className='input-double' type='text' id='name' onChange={nameChangeHandler} onBlur={nameBlurHandler}/>
+                <input className='input' type='text' id='name' onChange={nameChangeHandler} onBlur={nameBlurHandler}/>
                 {nameHasError && <p className='invalid'>Invalid name.</p> }
             </div>
             <div className='input-field__double-container'>
                 <label htmlFor='surname' className='label'>SURNAME</label>
-                <input className='input-double' type='text' id='surname' onChange={surnameChangeHandler} onBlur={surnameBlurHandler}/>
+                <input className='input' type='text' id='surname' onChange={surnameChangeHandler} onBlur={surnameBlurHandler}/>
                 {surnameHasError && <p className='invalid'>Invalid surname.</p> }
             </div>
         </div>
