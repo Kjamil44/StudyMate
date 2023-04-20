@@ -1,8 +1,9 @@
 import React from 'react'
+import Login from './login/Login'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <Login /> //temporary go staviv login kao homepage dur gi povrzeme drugite pages
   )
 }
 

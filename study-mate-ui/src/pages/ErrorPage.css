@@ -49,16 +49,44 @@
     /* margin-left: 12%; */
     font-size: 1.4rem;
     color: white;
+    
 }
 
 .content-text__link {
-    color: rgb(143, 151, 225);
+    color: rgb(40, 67, 67);
     font-weight: bold;
-    transition: color 0.5s ease-out;
+    transition: color 0.4s ease-out;
     text-decoration: none;
+    position: relative;
+}
+
+
+.content-text__link:before {
+    content: "";
+    position: absolute;
+    width: 0rem;
+    left: -0.2rem;
+    background-color: transparent;
+    top: 1.8rem;
+    height: 3px; 
+    transition: 0.4s ease-out ;
+    
+
+}
+
+.content-text__link:hover:before {
+    background-color: #77c1c1;
+    width: 8.6rem;
+}
+
+.content-text__link:not(:hover):before {
+    right: 0;
+    left: auto;
 }
 
 .content-text__link:hover {
-    color: black;
+    color: #77c1c1;
     font-weight: bold;
 }
+
+
