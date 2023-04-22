@@ -29,14 +29,19 @@ const subjects = [
   }
 ];
 
+import ErrorPage from './pages/ErrorPage';
+import RegisterPage from './pages/RegisterPage';
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { index: true, path: '/login', element: <Login /> },
-      { index: true, path: '/subjects', element: <SubjectIndexPage subjects={subjects} /> },
+      { path: 'login', element: <Login /> },
+      { path: 'register', element: <RegisterPage /> },
+      { path: 'subjects', element: <SubjectIndexPage subjects={subjects} /> },
     ],
   },
 ]);

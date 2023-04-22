@@ -60,7 +60,7 @@ const Login: React.FC = () => {
           <div className="text-danger">{error}</div>
           <div>
             <Button label="CONTINUE" fullwidth />
-            <Button buttonType="ghost" label="CREATE ACCOUNT" fullwidth />
+            <Link to="/register"><Button buttonType="ghost" label="CREATE ACCOUNT" fullwidth /></Link>
           </div>
         </form>
       </div>
