@@ -13,7 +13,7 @@
     .sidebar.show {
       display: block;
     }
-    .content {
+    .default-layout-content {
       margin-left: 200px;
     }
   }
@@ -34,7 +34,7 @@
       left: 0;
       z-index: 1;
     }
-    .content {
+    .default-layout-content {
       margin-top: 56px;
     }
   }

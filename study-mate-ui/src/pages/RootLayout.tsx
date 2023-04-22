@@ -33,7 +33,7 @@ const RootLayout = () => {
           <Button label="Logout" className="mt-3 text-dark bg-white mx-4 rounded rounded-3 d-lg-none" onClick={handleLogout}/>
         </Nav>
       </div>
-      <div className="content">
+      <div className="default-layout-content">
         <main className='bg-white'>
           <Outlet />
         </main>

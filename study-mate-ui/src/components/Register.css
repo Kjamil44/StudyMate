@@ -38,7 +38,7 @@
     font-weight: bold;
 }
 
-.container {
+.container-custom-class {
     background-color: white;
     font-family: 'Montserrat', sans-serif;
     width: 500px;

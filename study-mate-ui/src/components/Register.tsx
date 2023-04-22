@@ -81,7 +81,7 @@ const Register: React.FC = () => {
 
 
     
-    <div className='container'>
+    <div className='container-custom-class'>
     <div className='logo-container'>
         <img className='logo' src={Logo} alt='logo'/>
         <p className='slogan'>Stay on top of your studies with ease... <br />
