@@ -1,0 +1,41 @@
+/* DEFAULT LAYOUT CSS */
+/* styles for larger devices */
+@media (min-width: 992px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 200px;
+      background-color: #343a40;
+      padding-top: 56px;
+    }
+    .sidebar.show {
+      display: block;
+    }
+    .default-layout-content {
+      margin-left: 200px;
+    }
+  }
+  
+  /* styles for smaller devices */
+  @media (max-width: 991px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: -200px;
+      width: 200px;
+      background-color: #343a40;
+      padding-top: 56px;
+      transition: left 0.3s ease-in-out;
+    }
+    .sidebar.show {
+      left: 0;
+      z-index: 1;
+    }
+    .default-layout-content {
+      margin-top: 56px;
+    }
+  }
+  
