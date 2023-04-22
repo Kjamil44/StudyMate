@@ -17,7 +17,7 @@ const SubjectIndexPage: React.FC<Props>  = ({ subjects }) => {
     border: "0.5px dashed #4e4e4e",
   }
   return (
-    <div className="container">
+    <div className="container vh-100">
     <div className="row">
     {subjects.map((subject, i) => (
       <SubjectComponent key={i} subject={subject} />

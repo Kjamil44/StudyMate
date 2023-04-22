@@ -23,7 +23,7 @@ const RootLayout = () => {
       <Navbar className="d-lg-flex justify-content-lg-end" bg="dark" expand="lg">
         <Navbar.Brand href="/subjects" className="text-white ms-3 d-lg-none">Study Mate</Navbar.Brand>
         <Navbar.Toggle onClick={toggleSidebar} className="bg-white me-3 d-lg-none" />
-        <NavDropdown title="User" id="basic-nav-dropdown-left" className="text-white d-none d-lg-inline me-3">
+        <NavDropdown align={"end"} title="User" id="basic-nav-dropdown-start" className="text-white d-none d-lg-inline me-3">
             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </Navbar>
