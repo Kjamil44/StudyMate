@@ -37,7 +37,7 @@ const SubjectComponent: React.FC<Props> = ({ subject }) => {
           >
             {subject.description}
           </div>
-          <div className="d-sm-flex justify-content-between">
+          <div className="d-flex justify-content-between">
             <Button className="bg-white mb-2 text-dark" label="Edit"/>
             <Button className="mb-2" buttonType="danger" label="Delete"/>
           </div>
