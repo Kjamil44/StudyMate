@@ -5,3 +5,17 @@ services:
     build: study-mate-ui
     ports:
       - 3000:3000
+  study-mate-api:
+    container_name: api
+    build: StudyMate.API
+    ports:
+      - 5000:5000
+  study-mate-postgres:
+    container_name: postgres
+    image: postgres:15.2-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=StudyMateDb
+    ports:
+      - 6969:5432
