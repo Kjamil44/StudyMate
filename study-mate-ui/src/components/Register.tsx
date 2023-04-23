@@ -121,6 +121,7 @@ const Register: React.FC = () => {
 
         {signupError && <p className='invalid'>{signupError}</p>}
         <button className={'button__sign-up'} disabled={!formIsValid}>CREATE ACCOUNT</button>
+        <p style={{ textAlign: 'center' }}>Alreade have an account? <Link to='/login'>Log in</Link></p>
 
         {successfulSignup &&
         <div>

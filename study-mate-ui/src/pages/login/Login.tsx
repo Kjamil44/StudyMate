@@ -19,52 +19,67 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="row gx-2 rounded-5 col-sm-12 col-md-8 p-2 m-auto">
       <div
-        style={{ backgroundColor: '#54746F' }}
-        className="rounded-5 col-5 d-flex flex-column justify-content-center text-center p-5"
+        className="continaer vh-100"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background:
+            "linear-gradient(0deg, rgb(92, 109, 99) 0%, rgba(84,116,111,1) 45%, rgba(0,0,0,0.6278886554621849) 100%)",
+        }}
       >
-        <img src={StudyMateLogo} alt="Logo" className="w-100" />
-        <p className="text-white">
-          Stay on top of your students with ease... organize, prioritize and
-          conquer with <strong>Study Mate!</strong>
-        </p>
-      </div>
-      <div className="col-7 p-5 d-flex flex-column justify-content-center">
-        <h1 className="text-center">Login</h1>
-        <form className="row g-2" onSubmit={handleSubmit}>
-          <Input
-            name="email"
-            value={email}
-            label="EMAIL"
-            error={!!error}
-            onChange={(event) => {
-              setError(undefined);
-              setEmail(event.target.value);
-            }}
-          />
-          <Input
-            name="password"
-            type="password"
-            value={password}
-            error={!!error}
-            label="PASSWORD"
-            onChange={(event) => {
-              setError(undefined);
-              setPassword(event.target.value);
-            }}
-          />
-          <div>
-            <Link className="link-secondary" to="/forgot-password">Forgot your password?</Link>
+        <div className="row gx-2 rounded-5 col-sm-12 col-md-8 p-2 m-auto bg-white w-50 h-70">
+          <div
+            style={{ backgroundColor: "#54746F" }}
+            className="rounded-5 col-5 d-flex flex-column justify-content-center text-center p-5"
+          >
+            <img src={StudyMateLogo} alt="Logo" className="w-100" />
+            <p className="text-white">
+              Stay on top of your students with ease... organize, prioritize and
+              conquer with <strong>Study Mate!</strong>
+            </p>
           </div>
-          <div className="text-danger">{error}</div>
-          <div>
-            <Button label="CONTINUE" fullwidth />
-            <Link to="/register"><Button buttonType="ghost" label="CREATE ACCOUNT" fullwidth /></Link>
+          <div className="col-7 p-5 d-flex flex-column justify-content-center">
+            <h1 className="text-center">Login</h1>
+            <form className="row g-2" onSubmit={handleSubmit}>
+              <Input
+                name="email"
+                value={email}
+                label="EMAIL"
+                error={!!error}
+                onChange={(event) => {
+                  setError(undefined);
+                  setEmail(event.target.value);
+                }}
+              />
+              <Input
+                name="password"
+                type="password"
+                value={password}
+                error={!!error}
+                label="PASSWORD"
+                onChange={(event) => {
+                  setError(undefined);
+                  setPassword(event.target.value);
+                }}
+              />
+              <div>
+                <Link className="link-secondary" to="/forgot-password">
+                  Forgot your password?
+                </Link>
+              </div>
+              <div className="text-danger">{error}</div>
+              <div>
+                <Button label="CONTINUE" fullwidth />
+                <Link to="/register">
+                  <Button buttonType="ghost" label="CREATE ACCOUNT" fullwidth />
+                </Link>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
   );
 };
 
