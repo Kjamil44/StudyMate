@@ -1,0 +1,7 @@
+version: '3'
+services:
+  study-mate-ui:
+    container_name: ui
+    build: study-mate-ui
+    ports:
+      - 3000:3000
