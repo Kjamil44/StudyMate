@@ -36,15 +36,23 @@ const subjects = [
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'login', element: <Login /> },
-      { path: 'register', element: <RegisterPage /> },
-      { path: 'subjects', element: <SubjectIndexPage subjects={subjects} /> },
+      { path: "subjects", element: <SubjectIndexPage subjects={subjects} /> },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
