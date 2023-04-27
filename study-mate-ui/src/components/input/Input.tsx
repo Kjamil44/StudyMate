@@ -1,6 +1,6 @@
 type Props = React.ComponentProps<'input'> & {
   label?: string;
-  type?: 'text' | 'password' | 'email' | 'tel';
+  type?: React.ComponentProps<'input'>['type'];
   error?: boolean;
 };
 

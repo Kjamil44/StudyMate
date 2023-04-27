@@ -7,50 +7,76 @@ import Login from './pages/login/Login';
 import RegisterPage from './pages/RegisterPage';
 import RootLayout from './pages/RootLayout';
 import SubjectIndexPage from './pages/subject/Index';
+import CreateSubject from './pages/subject/Create';
+import EditSubject from './pages/subject/Edit';
+import SubjectTasks from './pages/task/Index';
+import ShowSubject from './pages/subject/Show';
+import CreateTask from './pages/task/Create';
+import EditTask from './pages/task/Edit';
 
 const subjects = [
   {
     subjectId: 1,
-    title: 'Mathematics',
+    name: 'Mathematics',
     description: 'The study of numbers, quantities, and shapes.',
+    start_date: new Date,
+    grade: 5,
+    end_date: new Date,
+    status: '',
   },
   {
     subjectId: 2,
-    title: 'Science',
+    name: 'Science',
     description:
       'The study of the natural world, including physics, chemistry, and biology. The study of the natural world, including physics, chemistry, and biology. The study of the natural world, including physics, chemistry, and biology. The study of the natural world, including physics, chemistry, and biology.',
+    start_date: new Date,
+    grade: 5,
+    end_date: new Date,
+    status: '',
   },
   {
     subjectId: 3,
-    title: 'History',
+    name: 'History',
     description: 'The study of past events and their significance.',
+    start_date: new Date,
+    grade: 5,
+    end_date: new Date,
+    status: '',
   },
   {
     subjectId: 4,
-    title: 'English',
+    name: 'English',
     description: 'The study of language, literature, and writing.',
+    start_date: new Date,
+    grade: 5,
+    end_date: new Date,
+    status: '',
   },
 ];
 
-
-
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "subjects", element: <SubjectIndexPage subjects={subjects} /> },
+      { path: 'subjects', element: <SubjectIndexPage subjects={subjects} /> },
+      { path: 'subjects/create', element: <CreateSubject /> },
+      { path: 'subjects/:subject/edit', element: <EditSubject /> },
+      { path: 'subjects/:subject/tasks', element: <SubjectTasks /> },
+      { path: 'subjects/:subject/tasks/create', element: <CreateTask /> },
+      { path: 'subjects/:subject/tasks/:task/edit', element: <EditTask /> },
+      { path: 'subjects/:subject', element: <ShowSubject subject={subjects[0]} /> },
     ],
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/register",
+    path: '/register',
     element: <RegisterPage />,
     errorElement: <ErrorPage />,
   },

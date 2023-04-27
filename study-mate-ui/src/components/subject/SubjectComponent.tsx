@@ -4,8 +4,12 @@ import Button from '../button/Button';
 
 interface Subject {
   subjectId: number;
-  title: string;
+  name: string;
   description: string;
+	grade: number,
+	start_date: Date,
+	end_date: Date,
+  status: string
 }
 
 interface Props {
@@ -28,7 +32,7 @@ const SubjectComponent: React.FC<Props> = ({ subject }) => {
         <Link
           className="text-decoration-none card bg-secondary bg-opacity-25 border-0 rounded rounded-3 px-5 py-4 h-100 d-flex flex-column justify-content-between mb-2"
           to={{
-            pathname: `/show-card/${subject.subjectId}`
+            pathname: `/subjects/${subject.subjectId}`
           }}
         >
           <div 
@@ -43,7 +47,7 @@ const SubjectComponent: React.FC<Props> = ({ subject }) => {
           </div>
         </Link>
         <div className="fw-bold text-dark mt-2 text-center">
-            {subject.title}
+            {subject.name}
           </div>
       </div>
     );
