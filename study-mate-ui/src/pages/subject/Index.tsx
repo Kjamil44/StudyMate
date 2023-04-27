@@ -8,8 +8,12 @@ interface Props {
 
 interface Subject {
   subjectId: number;
-  title: string;
+  name: string;
   description: string;
+	grade: number,
+	start_date: Date,
+	end_date: Date,
+  status: string
 }
 
 const SubjectIndexPage: React.FC<Props>  = ({ subjects }) => {

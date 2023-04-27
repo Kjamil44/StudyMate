@@ -3,25 +3,6 @@ import Login from '../login/Login';
 import Input from '../../components/input/Input';
 
 const CreateSubject = () => {
-  const priorityLevels = [
-    {
-      id: -1,
-      name: 'Select Priority',
-    },
-    {
-      id: 0,
-      name: 'Low',
-    },
-    {
-      id: 1,
-      name: 'Medium',
-    },
-    {
-      id: 2,
-      name: 'High',
-    },
-  ];
-
   const taskStatuses = [
     {
       id: 0,
@@ -42,33 +23,37 @@ const CreateSubject = () => {
       <div className="card bg-secondary bg-opacity-25 rounded rounded-2 p-3">
         <div className="d-sm-flex justify-content-between mb-2">
           <div className="me-sm-1 w-100">
-            <label className="form-label">Title</label>
+            <label className="form-label">Name</label>
             <div>
-              <input name="title" className="w-100" />
+              <input name="name" className="w-100" />
             </div>
           </div>
           <div className="ms-sm-1 w-100">
-            <label className="form-label">Due Date</label>
+            <label className="form-label">Grade</label>
             <div>
-              <input name="due_date" type="date" className="w-100" />
+              <input name="grade" type="number" className="w-100" />
             </div>
           </div>
         </div>
         <div className="d-sm-flex justify-content-between mb-2">
-          <div className="me-sm-1  w-100">
-            <label className="form-label">Priority Levels</label>
+          <div className="me-sm-1 w-100">
+            <label className="form-label">Start Date</label>
             <div>
-              <select name="priority_level" className="me-sm-1 w-100">
-                {priorityLevels.map((priority) => (
-                  <option value={priority.id}>{priority.name}</option>
-                ))}
-              </select>
+              <input name="start_date" type='date' className="w-100" />
             </div>
           </div>
           <div className="ms-sm-1 w-100">
+            <label className="form-label">End Date</label>
+            <div>
+              <input name="end_date" type="date" className="w-100" />
+            </div>
+          </div>
+        </div>
+        <div className="mb-2">
+          <div className="w-100">
             <label className="form-label">Status</label>
             <div>
-              <select name="priority_level" className="me-sm-1 w-100">
+              <select name="priority_level" className="w-100">
                 {taskStatuses.map((status) => (
                   <option value={status.id}>{status.name}</option>
                 ))}
