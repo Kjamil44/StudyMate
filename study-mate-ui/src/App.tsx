@@ -7,6 +7,8 @@ import Login from './pages/login/Login';
 import RegisterPage from './pages/RegisterPage';
 import RootLayout from './pages/RootLayout';
 import SubjectIndexPage from './pages/subject/Index';
+import CreateSubject from './pages/subject/Create';
+import EditSubject from './pages/subject/Edit';
 
 const subjects = [
   {
@@ -33,7 +35,6 @@ const subjects = [
 ];
 
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +43,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "subjects", element: <SubjectIndexPage subjects={subjects} /> },
+      { path: "subjects/create", element: <CreateSubject /> },
+      { path: "subjects/:subject/edit", element: <EditSubject /> },
     ],
   },
   {
