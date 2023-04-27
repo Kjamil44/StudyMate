@@ -4,7 +4,7 @@ services:
     container_name: ui
     build: study-mate-ui
     ports:
-      - 3000:3000
+      - 80:3000
     depends_on:
       - study-mate-api
   study-mate-api:
