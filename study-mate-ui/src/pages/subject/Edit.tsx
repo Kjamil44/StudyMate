@@ -82,7 +82,7 @@ const EditSubject = () => {
             <textarea name="due_date" className="w-100" />
           </div>
         </div>
-        <button className='text-center text-white py-2 bg-secondary rounded-3'>
+        <button className='text-center border-0 text-white py-2 bg-secondary rounded-3'>
           Update Subject
         </button>
       </div>
