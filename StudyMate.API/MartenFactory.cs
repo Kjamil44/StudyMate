@@ -1,13 +1,18 @@
-﻿using Marten;
+﻿using Microsoft.Extensions.Configuration;
+using Marten;
 
 namespace StudyMate.API
 {
     public static class MartenFactory
     {
+
         public static IDocumentSession Session { get; set; }    
         public static IDocumentStore CreateDocumentStore()
         {
-            var store = DocumentStore.For("User ID=postgres;Password=1234;Host=localhost;Port=6969;Database=StudyMateDb;");
+            var config = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json").Build();
+            var store = DocumentStore.For(config.GetSection("ConnectionString").Value);
             return store;
         }
         public static IDocumentSession CreateDocumentSession()
