@@ -29,7 +29,8 @@ const RootLayout = () => {
       </Navbar>
       <div className={`sidebar${showSidebar ? ' show' : ''}`}>
         <Nav className="flex-column">
-          <Nav.Link as={Link} to="/subjects" className="bg-white text-dark mx-4 rounded rounded-3">Subjects</Nav.Link>
+          <Nav.Link as={Link} to="/subjects" className="bg-white text-dark mx-4 rounded rounded-3 mb-3">Subjects</Nav.Link>
+          <Nav.Link as={Link} to="/notes" className="bg-white text-dark mx-4 rounded rounded-3 mb-3">Notes</Nav.Link>
           <Button label="Logout" className="mt-3 text-dark bg-white mx-4 rounded rounded-3 d-lg-none" onClick={handleLogout}/>
         </Nav>
       </div>
