@@ -14,7 +14,8 @@ interface Subject {
 }
 
 interface Props {
-  subject: Subject;
+  subject: Subject,
+  deleteSubject: (subjectId: number) => void
 }
 
 const styles = {
@@ -27,7 +28,7 @@ const styles = {
     WebkitLineClamp: 4
   } as any;
 
-const SubjectComponent: React.FC<Props> = ({ subject }) => {
+const SubjectComponent: React.FC<Props> = ({ subject, deleteSubject }) => {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     const showDeleteConfirmationHandler = () => {
@@ -35,7 +36,8 @@ const SubjectComponent: React.FC<Props> = ({ subject }) => {
     }
 
     const deleteHandler = () => {
-      console.log("Deleted modal");
+      closeDeleteConfirmationHandler();
+      deleteSubject(subject.subjectId);
     }
 
     const closeDeleteConfirmationHandler = () => {

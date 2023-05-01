@@ -16,7 +16,7 @@ const DeleteConfirmation: React.FC<Props> = ({closeModal, actionHandler, item}) 
       <IconDanger className="mx-auto mb-3" />
       <div className="mt-1">
         <h1 className="text-center fs-2">Are you sure?</h1>
-        <p className="text-center">Do you really want to delete <span style={{fontWeight: "bold", color: "darkslategray"}}>{item.title}</span>? <br /> This action cannot be undone.</p>
+        <p className="text-center">Do you really want to delete <span style={{fontWeight: "bold", color: "darkslategray"}}>{item.name}</span>? <br /> This action cannot be undone.</p>
         
       </div>
       <div className="d-flex justify-content-center mt-4">

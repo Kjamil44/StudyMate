@@ -18,45 +18,7 @@ import CreateNote from './pages/notes/CreateNote';
 import EditNote from './pages/notes/EditNote';
 import Note from './pages/notes/Note';
 
-const subjects = [
-  {
-    subjectId: 1,
-    name: 'Mathematics',
-    description: 'The study of numbers, quantities, and shapes.',
-    start_date: new Date(),
-    grade: 5,
-    end_date: new Date(),
-    status: '',
-  },
-  {
-    subjectId: 2,
-    name: 'Science',
-    description:
-      'The study of the natural world, including physics, chemistry, and biology. The study of the natural world, including physics, chemistry, and biology. The study of the natural world, including physics, chemistry, and biology. The study of the natural world, including physics, chemistry, and biology.',
-    start_date: new Date(),
-    grade: 5,
-    end_date: new Date(),
-    status: '',
-  },
-  {
-    subjectId: 3,
-    name: 'History',
-    description: 'The study of past events and their significance.',
-    start_date: new Date(),
-    grade: 5,
-    end_date: new Date(),
-    status: '',
-  },
-  {
-    subjectId: 4,
-    name: 'English',
-    description: 'The study of language, literature, and writing.',
-    start_date: new Date(),
-    grade: 5,
-    end_date: new Date(),
-    status: '',
-  },
-];
+
 
 const notes = [
   {
@@ -96,13 +58,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'subjects', element: <SubjectIndexPage subjects={subjects} /> },
+      { path: 'subjects', element: <SubjectIndexPage /> },
       { path: 'subjects/create', element: <CreateSubject /> },
       { path: 'subjects/:subject/edit', element: <EditSubject /> },
       { path: 'subjects/:subject/tasks', element: <SubjectTasks /> },
       { path: 'subjects/:subject/tasks/create', element: <CreateTask /> },
       { path: 'subjects/:subject/tasks/:task/edit', element: <EditTask /> },
-      { path: 'subjects/:subject', element: <ShowSubject subject={subjects[0]} /> },
+      { path: 'subjects/:subject', element: <ShowSubject /> },
       { path: 'notes', element: <NotesIndexPage notes={notes} /> },
       { path: 'notes/create', element: <CreateNote /> },
       { path: 'notes/edit/:id', element: <EditNote isModal={false} /> },
