@@ -12,8 +12,14 @@ interface Subject {
   status: string;
 }
 
-interface Props {
-  subject: Subject;
+const subject = {
+  subjectId: 1,
+  name: 'Mathematics',
+  description: 'The study of numbers, quantities, and shapes.',
+  start_date: new Date(),
+  grade: 5,
+  end_date: new Date(),
+  status: '',
 }
 
 const notes = [
@@ -33,7 +39,7 @@ const notes = [
   },
 ];
 
-const ShowSubject: React.FC<Props> = (props) => {
+const ShowSubject: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const showModal = () => {
@@ -58,35 +64,35 @@ const ShowSubject: React.FC<Props> = (props) => {
           <div className="w-100">
             <label className="form-label fw-bold">Name</label>
             <div>
-              <div>{props.subject.name}</div>
+              <div>{subject.name}</div>
             </div>
           </div>
           <div className="w-100">
             <label className="form-label fw-bold">Grade</label>
             <div>
-              <div>{props.subject.grade}</div>
+              <div>{subject.grade}</div>
             </div>
           </div>
         </div>
         <div className="d-sm-flex justify-content-between mb-2">
           <div className="w-100">
             <label className="form-label fw-bold">Start Date</label>
-            <div>{props.subject.start_date.toDateString()}</div>
+            <div>{subject.start_date.toDateString()}</div>
           </div>
           <div className="w-100">
             <label className="form-label fw-bold">End Date</label>
-            <div>{props.subject.end_date.toDateString()}</div>
+            <div>{subject.end_date.toDateString()}</div>
           </div>
         </div>
         <div className="mb-2">
           <div className="w-100">
             <label className="form-label fw-bold">Status</label>
-            <div>{props.subject.status}</div>
+            <div>{subject.status}</div>
           </div>
         </div>
         <div className="w-100 mb-3">
           <label className="form-label fw-bold">Description</label>
-          <div>{props.subject.description}</div>
+          <div>{subject.description}</div>
         </div>
         <div className="w-100 mb-3">
           <label className="form-label fw-bold">Notes</label>

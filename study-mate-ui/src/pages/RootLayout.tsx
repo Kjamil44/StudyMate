@@ -6,6 +6,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import '../App.css';
 import Button from '../components/button/Button';
 import { alignPropType } from 'react-bootstrap/esm/types';
+import studyMateLogo  from '../assets/studymate2.png'
 
 const RootLayout = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -22,6 +23,9 @@ const RootLayout = () => {
       <div className="App">
       <Navbar className="d-lg-flex justify-content-lg-end" bg="dark" expand="lg">
         <Navbar.Brand href="/subjects" className="text-white ms-3 d-lg-none">Study Mate</Navbar.Brand>
+        <div className='position-relative mx-auto'>
+          <img className='position-relative' draggable="false" style={{height: "30px"}} src={studyMateLogo}/>
+        </div>
         <Navbar.Toggle onClick={toggleSidebar} className="bg-white me-3 d-lg-none" />
         <NavDropdown align={"end"} title="User" id="basic-nav-dropdown-start" className="text-white d-none d-lg-inline me-3">
             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
