@@ -28,8 +28,6 @@ namespace StudyMate.API.Handlers.NoteHandlers
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
                 var notes = await _session.Query<Note>().ToListAsync();
-                if (!notes.Any())
-                    throw new Exception("No Notes available");
 
                 return new Response
                 {

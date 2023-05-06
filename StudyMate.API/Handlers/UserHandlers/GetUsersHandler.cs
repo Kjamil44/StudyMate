@@ -27,8 +27,6 @@ namespace StudyMate.API.Handlers.UserHandlers
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
                 var users = await _session.Query<User>().ToListAsync();
-                if (!users.Any())
-                    throw new Exception("No Users available");
 
                 return new Response
                 {

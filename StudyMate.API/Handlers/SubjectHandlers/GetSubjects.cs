@@ -32,8 +32,6 @@ namespace StudyMate.API.Handlers.SubjectHandlers
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
                 var subjects = await _session.Query<Subject>().ToListAsync();
-                if (!subjects.Any())
-                    throw new Exception("No Subjects available");
 
                 return new Response
                 {

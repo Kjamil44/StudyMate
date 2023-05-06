@@ -31,8 +31,6 @@ namespace StudyMate.API.Handlers.TaskHandlers
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
                 var tasks = await _session.Query<Models.Task>().ToListAsync();
-                if (!tasks.Any())
-                    throw new Exception("No Tasks available");
 
                 return new Response
                 {
