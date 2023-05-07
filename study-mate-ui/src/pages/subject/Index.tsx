@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { GetAllSubjectsItemResponse, SubjectApi } from '../../api';
 import SubjectComponent from '../../components/subject/SubjectComponent';
 
+
 const SubjectIndexPage: React.FC = () => {
   const [subjects, setSubjects] = useState<GetAllSubjectsItemResponse[]>([]);
 
@@ -12,6 +13,15 @@ const SubjectIndexPage: React.FC = () => {
       .then((data) => data.items)
       .then(setSubjects);
   }, []);
+
+  useEffect(() => {
+    if(isInitial) {
+      isInitial = false;
+      return;
+    }
+    //Save subjects in the backend after every change in the subject array EXCEPT FOR THE INITIAL (when we apply the state)
+    //Mora vaka poso ako nema isInitial, togas pri deklaracija na useState so subjects kje se naprai infinite loop.
+  }, [subjects])
 
   const borderDashed = {
     border: '0.5px dashed #4e4e4e',

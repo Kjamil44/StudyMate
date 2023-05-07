@@ -3,6 +3,7 @@ import EditNote from '../notes/EditNote';
 import { useParams } from 'react-router-dom';
 import { GetSubjectReponse, SubjectApi } from '../../api';
 
+
 interface Props {}
 
 const notes = [
@@ -25,6 +26,7 @@ const notes = [
 const ShowSubject: React.FC<Props> = () => {
   const { subject: id } = useParams();
   const [subject, setSubject] = useState<GetSubjectReponse>();
+
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
