@@ -64,7 +64,7 @@ const CreateSubject = () => {
               <div>
                 <select name="status" className="w-100">
                   {Object.entries(StatusEnumObject).map(([name, id]) => (
-                    <option value={id}>{name}</option>
+                    <option key={id} value={id}>{name}</option>
                   ))}
                 </select>
               </div>
