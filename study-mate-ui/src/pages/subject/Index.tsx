@@ -15,10 +15,6 @@ const SubjectIndexPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if(isInitial) {
-      isInitial = false;
-      return;
-    }
     //Save subjects in the backend after every change in the subject array EXCEPT FOR THE INITIAL (when we apply the state)
     //Mora vaka poso ako nema isInitial, togas pri deklaracija na useState so subjects kje se naprai infinite loop.
   }, [subjects])

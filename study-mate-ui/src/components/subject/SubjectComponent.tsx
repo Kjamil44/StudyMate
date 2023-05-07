@@ -6,7 +6,7 @@ import { GetAllSubjectsItemResponse } from '../../api';
 
 interface Props {
   subject: GetAllSubjectsItemResponse;
-  deleteSubject: (subjectId: number) => void
+  deleteSubject?: (subjectId: number) => void
 
 }
 
@@ -29,7 +29,7 @@ const SubjectComponent: React.FC<Props> = ({ subject, deleteSubject }) => {
 
     const deleteHandler = () => {
       closeDeleteConfirmationHandler();
-      deleteSubject(subject.subjectId);
+
     }
 
     const closeDeleteConfirmationHandler = () => {
