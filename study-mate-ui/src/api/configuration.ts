@@ -1,6 +1,6 @@
 import { FetchResponse } from "./types";
 
-const baseUrl = 'http://localhost:5273/api';
+const baseUrl = process.env.REACT_APP_STUDY_MATE_API_BASE_URL;
 
 export const createFetchResponse = async <T>(response: Response): Promise<FetchResponse<T>> => ({
   ...response,
