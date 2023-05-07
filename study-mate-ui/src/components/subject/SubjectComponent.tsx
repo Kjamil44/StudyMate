@@ -2,19 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../button/Button';
 import DeleteConfirmation from './DeleteConfirmation';
-
-interface Subject {
-  subjectId: number;
-  name: string;
-  description: string;
-	grade: number,
-	start_date: Date,
-	end_date: Date,
-  status: string
-}
+import { GetAllSubjectsItemResponse } from '../../api';
 
 interface Props {
-  subject: Subject;
+  subject: GetAllSubjectsItemResponse;
 }
 
 const styles = {
@@ -48,7 +39,7 @@ const SubjectComponent: React.FC<Props> = ({ subject }) => {
         <Link
           className="text-decoration-none card bg-secondary bg-opacity-25 border-0 rounded rounded-3 px-5 py-4 h-100 d-flex flex-column justify-content-between mb-2"
           to={{
-            pathname: `/subjects/${subject.subjectId}`
+            pathname: `/subjects/${subject.id}`
           }}
         >
           <div 

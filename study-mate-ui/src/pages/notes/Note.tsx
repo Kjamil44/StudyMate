@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { INoteModel } from '../../models/INoteModel';
 import { Link } from 'react-router-dom';
+import { GetAllNotesItemResponse } from '../../api';
 
 interface NoteProps {
-  note: INoteModel;
+  note: GetAllNotesItemResponse;
 }
 
 const Note: React.FC<NoteProps> = ({ note }: NoteProps) => {
@@ -34,15 +34,15 @@ const Note: React.FC<NoteProps> = ({ note }: NoteProps) => {
           <div className="d-sm-flex justify-content-between mb-2">
             <div className="w-100">
               <label className="form-label fw-bold" style={{ fontSize: '1.5em' }}>
-                {note.Title}
+                {note.title}
               </label>
             </div>
           </div>
           <div className="w-100 mb-3" style={{ height: '200px' }}>
-            <div style={{ fontSize: '1rem' }}>{note.Description}</div>
+            <div style={{ fontSize: '1rem' }}>{note.description}</div>
           </div>
           <div className="d-sm-flex justify-content-between mb-2 w-100">
-            <Link to={'edit/' + note.Id} style={buttons}>
+            <Link to={'edit/' + note.id} style={buttons}>
               <div className="fs-14px fw-bold text-dark">✎ Edit</div>
             </Link>
             <div className="fs-14px fw-bold text-dark" style={buttons} onClick={openDeleteModal}>
@@ -78,7 +78,7 @@ const Note: React.FC<NoteProps> = ({ note }: NoteProps) => {
           >
             <div className="p-4">
               <p style={{ fontSize: '1.5rem' }}>
-                Are you sure you want to delete <b>{note.Title}</b>?
+                Are you sure you want to delete <b>{note.title}</b>?
               </p>
               <div style={{ display: 'flex', justifyContent: 'right' }}>
                 <div
@@ -99,7 +99,7 @@ const Note: React.FC<NoteProps> = ({ note }: NoteProps) => {
                   Cancel
                 </div>
                 <Link
-                  to={'note/delete/' + note.Id}
+                  to={'note/delete/' + note.id}
                   style={{
                     marginRight: '20px',
                     padding: '10px',

@@ -1,40 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GetAllSubjectsItemResponse, SubjectApi } from '../../api';
 import SubjectComponent from '../../components/subject/SubjectComponent';
 
-interface Props {
-  subjects: Array<Subject>;
-}
-
-interface Subject {
-  subjectId: number;
-  name: string;
-  description: string;
-  grade: number;
-  start_date: Date;
-  end_date: Date;
-  status: string;
-}
-
-const SubjectIndexPage: React.FC<Props> = ({ subjects }) => {
-  const [data, setData] = useState();
+const SubjectIndexPage: React.FC = () => {
+  const [subjects, setSubjects] = useState<GetAllSubjectsItemResponse[]>([]);
 
   useEffect(() => {
-    const getAll = async () => {
-      const fetchData = async () => {
-        const response = await fetch('https://localhost:7273/api/subjects/all', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-      };
-      const data = await fetchData();
-      console.log(data);
-    };
-
-    getAll();
-  });
+    SubjectApi.getAllSubjects()
+      .then((response) => response.data)
+      .then((data) => data.items)
+      .then(setSubjects);
+  }, []);
 
   const borderDashed = {
     border: '0.5px dashed #4e4e4e',
@@ -42,7 +19,7 @@ const SubjectIndexPage: React.FC<Props> = ({ subjects }) => {
   return (
     <div className="container vh-100">
       <div className="row">
-        {subjects.map((subject, i) => (
+        {subjects?.map((subject, i) => (
           <SubjectComponent key={i} subject={subject} />
         ))}
         <div className="col-12 col-md-4 col-lg-4 p-3 cursor-pointer">
