@@ -14,6 +14,7 @@ namespace StudyMate.API.Handlers.NoteHandlers
         {
             public class Item
             {
+                public Guid Id { get; set; }
                 public string Title { get; set; }
                 public string Description { get; set; }
                 public Guid BelongsId { get; set; }
@@ -35,6 +36,7 @@ namespace StudyMate.API.Handlers.NoteHandlers
                 {
                     Items = notes.Select(note => new Response.Item
                     {
+                        Id = note.Id,
                         Title = note.Title,
                         Description = note.Description,
                         BelongsId = note.BelongsId,
