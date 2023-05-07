@@ -1,55 +1,22 @@
-import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
 import Login from './pages/login/Login';
+import CreateNote from './pages/notes/CreateNote';
+import EditNote from './pages/notes/EditNote';
+import NotesIndexPage from './pages/notes/Index';
 import RegisterPage from './pages/RegisterPage';
 import RootLayout from './pages/RootLayout';
-import SubjectIndexPage from './pages/subject/Index';
 import CreateSubject from './pages/subject/Create';
 import EditSubject from './pages/subject/Edit';
-import SubjectTasks from './pages/task/Index';
+import SubjectIndexPage from './pages/subject/Index';
 import ShowSubject from './pages/subject/Show';
 import CreateTask from './pages/task/Create';
 import EditTask from './pages/task/Edit';
-import NotesIndexPage from './pages/notes/Index';
-import CreateNote from './pages/notes/CreateNote';
-import EditNote from './pages/notes/EditNote';
+import SubjectTasks from './pages/task/Index';
+import { Suspense } from 'react';
 import Note from './pages/notes/Note';
-
-
-
-const notes = [
-  {
-    Id: 1,
-    Title: 'Note #1',
-    Description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut arcu nec turpis convallis pretium. Fusce egestas sagittis justo non eleifend. Etiam eget mi risus. Proin lacus metus, pretium vel elit non, iaculis dapibus eros.',
-    BelongsId: 1,
-  },
-  {
-    Id: 2,
-    Title: 'Note #1',
-    Description:
-      'Lorem ipsum dolor sit amet. Quisque ut arcu nec turpis convallis pretium. Fusce egestas sagittis justo non eleifend. Etiam eget mi risus. Proin lacus metus, pretium vel elit non, iaculis dapibus eros.',
-    BelongsId: 1,
-  },
-  {
-    Id: 3,
-    Title: 'Note #1',
-    Description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut arcu nec turpis convallis pretium. Fusce egestas sagittis justo non eleifend. Etiam eget mi risus. Proin lacus metus, pretium vel elit non, iaculis dapibus eros.',
-    BelongsId: 2,
-  },
-  {
-    Id: 4,
-    Title: 'Note #1',
-    Description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut arcu nec turpis convallis pretium. Fusce egestas sagittis justo non eleifend. Etiam eget mi risus. Proin lacus metus, pretium vel elit non, iaculis dapibus eros.',
-    BelongsId: 2,
-  },
-];
 
 const router = createBrowserRouter([
   {
@@ -65,7 +32,7 @@ const router = createBrowserRouter([
       { path: 'subjects/:subject/tasks/create', element: <CreateTask /> },
       { path: 'subjects/:subject/tasks/:task/edit', element: <EditTask /> },
       { path: 'subjects/:subject', element: <ShowSubject /> },
-      { path: 'notes', element: <NotesIndexPage notes={notes} /> },
+      { path: 'notes', element: <NotesIndexPage /> },
       { path: 'notes/create', element: <CreateNote /> },
       { path: 'notes/edit/:id', element: <EditNote isModal={false} /> },
       // { path: 'notes/:subject', element: <Note subject={subjects[0]} /> },
@@ -84,7 +51,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App;

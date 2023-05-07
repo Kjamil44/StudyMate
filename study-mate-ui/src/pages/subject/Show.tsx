@@ -1,26 +1,10 @@
-import React, { useState } from 'react';
-import NotesIndexPage from '../notes/Index';
+import React, { useEffect, useState } from 'react';
 import EditNote from '../notes/EditNote';
+import { useParams } from 'react-router-dom';
+import { GetSubjectReponse, SubjectApi } from '../../api';
 
-interface Subject {
-  subjectId: number;
-  name: string;
-  description: string;
-  grade: number;
-  start_date: Date;
-  end_date: Date;
-  status: string;
-}
 
-const subject = {
-  subjectId: 1,
-  name: 'Mathematics',
-  description: 'The study of numbers, quantities, and shapes.',
-  start_date: new Date(),
-  grade: 5,
-  end_date: new Date(),
-  status: '',
-}
+interface Props {}
 
 const notes = [
   {
@@ -39,8 +23,20 @@ const notes = [
   },
 ];
 
-const ShowSubject: React.FC = () => {
+const ShowSubject: React.FC<Props> = () => {
+  const { subject: id } = useParams();
+  const [subject, setSubject] = useState<GetSubjectReponse>();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!id) {
+      return;
+    }
+    SubjectApi.getSubject(id)
+      .then((response) => response.data)
+      .then(setSubject);
+  }, [id]);
 
   const showModal = () => {
     setIsOpen(true);
@@ -64,35 +60,35 @@ const ShowSubject: React.FC = () => {
           <div className="w-100">
             <label className="form-label fw-bold">Name</label>
             <div>
-              <div>{subject.name}</div>
+              <div>{subject?.name}</div>
             </div>
           </div>
           <div className="w-100">
             <label className="form-label fw-bold">Grade</label>
             <div>
-              <div>{subject.grade}</div>
+              <div>{subject?.grade}</div>
             </div>
           </div>
         </div>
         <div className="d-sm-flex justify-content-between mb-2">
           <div className="w-100">
             <label className="form-label fw-bold">Start Date</label>
-            <div>{subject.start_date.toDateString()}</div>
+            <div>{subject?.startDate.toString()}</div>
           </div>
           <div className="w-100">
             <label className="form-label fw-bold">End Date</label>
-            <div>{subject.end_date.toDateString()}</div>
+            <div>{subject?.endDate.toString()}</div>
           </div>
         </div>
         <div className="mb-2">
           <div className="w-100">
             <label className="form-label fw-bold">Status</label>
-            <div>{subject.status}</div>
+            <div>{subject?.status}</div>
           </div>
         </div>
         <div className="w-100 mb-3">
           <label className="form-label fw-bold">Description</label>
-          <div>{subject.description}</div>
+          <div>{subject?.description}</div>
         </div>
         <div className="w-100 mb-3">
           <label className="form-label fw-bold">Notes</label>

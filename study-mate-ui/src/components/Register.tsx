@@ -1,9 +1,10 @@
 import React from 'react'
 import useInput from '../hooks/useInput'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
 import Logo from '../assets/studymate2.png'
+import { AuthApi, RegisterRequest } from '../api';
 
 const validateEmail = (email: string) => {
     return String(email)
@@ -16,6 +17,7 @@ const validateEmail = (email: string) => {
 const Register: React.FC = () => {
     const [signupError, setSignupError] = useState<null | string>(null);
     const [successfulSignup, setSuccessfulSignup] = useState<boolean>(false);
+    const navigate = useNavigate();
 
 
   const {
@@ -69,8 +71,22 @@ const Register: React.FC = () => {
     }
 
     const submitFormHandler = (event: React.FormEvent) => {
-        event.preventDefault();
+      event.preventDefault();
+      if (enteredPassword !== enteredRepeatPassword) {
+        return;
+      }
 
+      const request: RegisterRequest = {
+        name: enteredName ?? '',
+        surname: enteredSurname ?? '',
+        email: enteredEmail ?? '',
+        password: enteredPassword ?? '',
+      };
+
+      AuthApi.register(request)
+        .then((response) => response.data)
+        .then((data) => localStorage.setItem('userId', data.userId))
+        .then(() => navigate('/subjects'));
     }
 
 

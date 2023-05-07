@@ -1,32 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { INoteModel } from '../../models/INoteModel';
+import { GetAllNotesItemResponse, GetAllSubjectsItemResponse, NoteApi, SubjectApi } from '../../api';
 import Note from './Note';
 
-interface Props {
-  notes: Array<INoteModel>;
-}
+interface Props {}
 
-const subjects = ['Subject 1', 'Subject 2', 'Subject 3', 'Subject 4', 'Subject 5'];
-
-const NotesIndexPage: React.FC<Props> = ({ notes }) => {
-  const [data, setData] = useState();
+const NotesIndexPage: React.FC<Props> = () => {
+  const [notes, setNotes] = useState<GetAllNotesItemResponse[]>();
+  const [subjects, setSubjects] = useState<GetAllSubjectsItemResponse[]>();
 
   useEffect(() => {
-    const getAll = async () => {
-      const fetchData = async () => {
-        const response = await fetch('https://localhost:7273/api/notes/all', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-      };
-      const data = await fetchData();
-      console.log(data);
-    };
+    NoteApi.getAllNotes()
+      .then((response) => response.data.items)
+      .then(setNotes);
 
-    getAll();
-  });
+    SubjectApi.getAllSubjects()
+      .then((response) => response.data.items)
+      .then(setSubjects);
+  }, []);
 
   return (
     <div className="container vh-100">
@@ -56,14 +46,14 @@ const NotesIndexPage: React.FC<Props> = ({ notes }) => {
             style={{ height: '40px', fontSize: '1.2rem', borderRadius: '10px', cursor: 'pointer' }}
           >
             <option value="All">All</option>
-            {subjects.map((subject) => (
-              <option value={subject}>{subject}</option>
+            {subjects?.map((subject) => (
+              <option value={subject.id}>{subject.name}</option>
             ))}
           </select>
         </div>
       </div>
       <div className="row">
-        {notes.map((note: INoteModel, index: number) => (
+        {notes?.map((note, index) => (
           <Note key={index} note={note} />
         ))}
       </div>

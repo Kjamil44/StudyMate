@@ -12,22 +12,22 @@ namespace StudyMate.API.Controllers
         public TaskController(ISender sender) => _sender = sender;
 
         [HttpGet("all")]
-        public async Task<GetTasks.Response> GetTasks() => await _sender.Send(new GetTasks.Request());
+        public async Task<IActionResult> GetTasks() => Ok(await _sender.Send(new GetTasks.Request()));
 
         [HttpGet("{taskId}")]
-        public async Task<GetTask.Response> GetTask(Guid taskId) => await _sender.Send(new GetTask.Request { Id = taskId });
+        public async Task<IActionResult> GetTask(Guid taskId) => Ok(await _sender.Send(new GetTask.Request { Id = taskId }));
 
         [HttpPost("create")]
-        public async Task<CreateTask.Response> CreateTask([FromBody] CreateTask.Request newTask) => await _sender.Send(newTask);
+        public async Task<IActionResult> CreateTask([FromBody] CreateTask.Request newTask) => Ok(await _sender.Send(newTask));
 
         [HttpPut("update/{taskId}")]
-        public async Task<UpdateTask.Response> UpdateTask(Guid taskId, [FromBody] UpdateTask.Request newTask)
+        public async Task<IActionResult> UpdateTask(Guid taskId, [FromBody] UpdateTask.Request newTask)
         {
             newTask.Id = taskId;
-            return await _sender.Send(newTask);
+            return Ok(await _sender.Send(newTask));
         }
 
         [HttpDelete("delete/{taskId}")]
-        public async Task<DeleteTask.Response> DeleteTask(Guid taskId) => await _sender.Send(new DeleteTask.Request { Id = taskId });
+        public async Task<IActionResult> DeleteTask(Guid taskId) => Ok(await _sender.Send(new DeleteTask.Request { Id = taskId }));
     }
 }

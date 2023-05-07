@@ -1,7 +1,3 @@
-import React from 'react';
-import Login from '../login/Login';
-import Input from '../../components/input/Input';
-
 type EditNoteProps = {
   isModal: boolean;
   saveNote?: () => void;
