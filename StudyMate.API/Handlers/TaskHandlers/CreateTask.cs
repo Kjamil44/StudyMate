@@ -18,6 +18,7 @@ namespace StudyMate.API.Handlers.TaskHandlers
 
         public class Response
         {
+            public Guid SubjectId { get; set; }
             public Guid TaskId { get; set; }
         }
 
@@ -46,7 +47,11 @@ namespace StudyMate.API.Handlers.TaskHandlers
                 _session.Store(task);
                 await _session.SaveChangesAsync();
 
-                return new Response { TaskId = task.Id };
+                return new Response
+                {
+                    SubjectId = request.SubjectId,
+                    TaskId = task.Id
+                };
             }
         }
     }
