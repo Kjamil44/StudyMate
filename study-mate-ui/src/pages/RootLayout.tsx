@@ -1,22 +1,32 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import '../App.css';
+import studyMateLogo from '../assets/studymate2.png';
 import Button from '../components/button/Button';
-import { alignPropType } from 'react-bootstrap/esm/types';
-import studyMateLogo  from '../assets/studymate2.png'
 
 const RootLayout = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === '/login') {
+      return;
+    }
+
+    if (!localStorage.getItem('userId')) {
+      navigate('/login');
+    }
+  }, [location, navigate]);
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
 
   const handleLogout = () => {
-    // handle logout logic here
+    localStorage.removeItem('userId');
+    navigate('/login');
   };
 
     return (
@@ -24,7 +34,7 @@ const RootLayout = () => {
       <Navbar className="d-lg-flex justify-content-lg-end" bg="dark" expand="lg">
         <Navbar.Brand href="/subjects" className="text-white ms-3 d-lg-none">Study Mate</Navbar.Brand>
         <div className='position-relative mx-auto'>
-          <img className='position-relative' draggable="false" style={{height: "30px"}} src={studyMateLogo}/>
+          <img className='position-relative' draggable="false" alt='' style={{height: "30px"}} src={studyMateLogo}/>
         </div>
         <Navbar.Toggle onClick={toggleSidebar} className="bg-white me-3 d-lg-none" />
         <NavDropdown align={"end"} title="User" id="basic-nav-dropdown-start" className="text-white d-none d-lg-inline me-3">

@@ -1,10 +1,9 @@
-import React from 'react'
-import useInput from '../hooks/useInput'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { CreateUserRequest, UserApi } from '../api';
+import Logo from '../assets/studymate2.png';
+import useInput from '../hooks/useInput';
 import './Register.css';
-import Logo from '../assets/studymate2.png'
-import { AuthApi, RegisterRequest } from '../api';
 
 const validateEmail = (email: string) => {
     return String(email)
@@ -72,18 +71,18 @@ const Register: React.FC = () => {
 
     const submitFormHandler = (event: React.FormEvent) => {
       event.preventDefault();
-      if (enteredPassword !== enteredRepeatPassword) {
+      if (!formIsValid || enteredPassword !== enteredRepeatPassword) {
         return;
       }
 
-      const request: RegisterRequest = {
+      const request: CreateUserRequest = {
         name: enteredName ?? '',
         surname: enteredSurname ?? '',
         email: enteredEmail ?? '',
         password: enteredPassword ?? '',
       };
 
-      AuthApi.register(request)
+      UserApi.createUser(request)
         .then((response) => response.data)
         .then((data) => localStorage.setItem('userId', data.userId))
         .then(() => navigate('/subjects'));

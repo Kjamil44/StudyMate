@@ -6,18 +6,7 @@ export interface LoginResponse {
   userId: string;
 }
 
-export interface RegisterResponse {
-  userId: string;
-}
-
 export interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-export interface RegisterRequest {
-  name: string;
-  surname: string;
   email: string;
   password: string;
 }
@@ -142,7 +131,9 @@ export interface GetUserReponse {
   email: string;
 }
 
-export interface CreateUserResponse {}
+export interface CreateUserResponse {
+  userId: string;
+}
 
 export interface UpdateUserResponse {}
 
