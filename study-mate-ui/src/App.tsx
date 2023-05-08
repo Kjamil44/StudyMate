@@ -16,7 +16,6 @@ import CreateTask from './pages/task/Create';
 import EditTask from './pages/task/Edit';
 import SubjectTasks from './pages/task/Index';
 import { Suspense } from 'react';
-import Note from './pages/notes/Note';
 
 const router = createBrowserRouter([
   {

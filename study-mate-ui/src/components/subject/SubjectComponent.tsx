@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../button/Button';
 import DeleteConfirmation from './DeleteConfirmation';
-import { GetAllSubjectsItemResponse } from '../../api';
+import { GetAllSubjectsItemResponse, SubjectApi } from '../../api';
 
 interface Props {
   subject: GetAllSubjectsItemResponse;
   deleteSubject?: (subjectId: number) => void
-
+  onDelete: () => void;
 }
 
 const styles = {
@@ -20,7 +20,7 @@ const styles = {
     WebkitLineClamp: 4
   } as any;
 
-const SubjectComponent: React.FC<Props> = ({ subject, deleteSubject }) => {
+const SubjectComponent: React.FC<Props> = ({ subject, onDelete }) => {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     const showDeleteConfirmationHandler = () => {
@@ -29,7 +29,7 @@ const SubjectComponent: React.FC<Props> = ({ subject, deleteSubject }) => {
 
     const deleteHandler = () => {
       closeDeleteConfirmationHandler();
-
+      SubjectApi.deleteSubject(subject.id).then(onDelete);
     }
 
     const closeDeleteConfirmationHandler = () => {
@@ -52,7 +52,9 @@ const SubjectComponent: React.FC<Props> = ({ subject, deleteSubject }) => {
             {subject.description}
           </div>
           <div className="d-flex justify-content-between">
-            <Button className="bg-white mb-2 text-dark" label="Edit"/>
+            <Link to={`${subject.id}/edit`}>
+              <Button className="bg-white mb-2 text-dark" label="Edit" />
+            </Link>
             <Link to=""><Button className="mb-2" buttonType="danger" label="Delete" onClick={showDeleteConfirmationHandler}/></Link>
           </div>
         </Link>

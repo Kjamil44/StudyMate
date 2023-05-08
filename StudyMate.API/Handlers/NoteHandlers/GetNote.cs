@@ -13,6 +13,7 @@ namespace StudyMate.API.Handlers.NoteHandlers
         }
         public class Response
         {
+            public Guid Id { get; set; }
             public string Title { get; set; }
             public string Description { get; set; }
             public Guid BelongsId { get; set; }
@@ -34,6 +35,7 @@ namespace StudyMate.API.Handlers.NoteHandlers
 
                 return new Response
                 {
+                    Id = note.Id,
                     Title = note.Title,
                     Description = note.Description,
                     BelongsId = note.BelongsId,

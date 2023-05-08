@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { PriorityLevelObject, StatusEnumObject, TaskApi, UpdateTaskRequest } from '../../api';
+import { GetTaskReponse, PriorityLevelObject, StatusEnumObject, TaskApi, UpdateTaskRequest } from '../../api';
 
 type UpdateaskRequestForm = {
   [T in keyof UpdateTaskRequest]: { value?: any };
 };
 
 const EditTask = () => {
-  const { subject, task } = useParams();
+  const [task, setTask] = useState<GetTaskReponse>();
+  const { subject, task: taskId } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!taskId) {
+      throw new Error("Can't edit task");
+    }
+
+    TaskApi.getTask(taskId)
+      .then((response) => response.data)
+      .then(setTask);
+  }, [taskId]);
+
   const handleSubmit = (event: React.SyntheticEvent) => {
-    if (!subject || !task) {
+    if (!subject || !taskId) {
       return;
     }
 
     event.preventDefault();
     const values = event.target as unknown as UpdateaskRequestForm;
     const request: UpdateTaskRequest = {
-      id: task ?? '',
+      id: taskId ?? '',
       subjectId: subject ?? '',
       title: values.title.value ?? '',
       description: values.description.value ?? '',
@@ -27,7 +38,7 @@ const EditTask = () => {
       status: values.status.value ?? '',
     };
 
-    TaskApi.updateTask(task, request).then(() => navigate('/tasks'));
+    TaskApi.updateTask(taskId, request).then(() => navigate('/tasks'));
   };
 
   return (
@@ -38,13 +49,13 @@ const EditTask = () => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Title</label>
               <div>
-                <input name="title" className="w-100" />
+                <input name="title" defaultValue={task?.title} className="w-100" />
               </div>
             </div>
             <div className="ms-sm-1 w-100">
               <label className="form-label">Due Date</label>
               <div>
-                <input name="dueDate" type="date" className="w-100" />
+                <input name="dueDate" defaultValue={task?.dueDate.toString()} type="date" className="w-100" />
               </div>
             </div>
           </div>
@@ -52,7 +63,7 @@ const EditTask = () => {
             <div className="me-sm-1  w-100">
               <label className="form-label">Priority Levels</label>
               <div>
-                <select name="priorityLevel" className="me-sm-1 w-100">
+                <select name="priorityLevel" defaultValue={task?.priorityLevel} className="me-sm-1 w-100">
                   <option value={-1}>Select Priority</option>
                   {Object.entries(PriorityLevelObject).map(([name, id]) => (
                     <option value={id}>{name}</option>
@@ -63,7 +74,8 @@ const EditTask = () => {
             <div className="ms-sm-1 w-100">
               <label className="form-label">Status</label>
               <div>
-                <select name="status" className="me-sm-1 w-100">
+                <select name="status" defaultValue={task?.status} className="me-sm-1 w-100">
+                  <option value={-1}>Select Status</option>
                   {Object.entries(StatusEnumObject).map(([name, id]) => (
                     <option value={id}>{name}</option>
                   ))}
@@ -74,7 +86,7 @@ const EditTask = () => {
           <div className="w-100 mb-3">
             <label className="form-label">Description</label>
             <div>
-              <textarea name="description" className="w-100" />
+              <textarea name="description" defaultValue={task?.description} className="w-100" />
             </div>
           </div>
           <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">Update Task</button>

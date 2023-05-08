@@ -1,14 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { GetAllTasksItemResponse, TaskApi } from '../../api';
+import { Link } from 'react-router-dom';
+import AddNew from '../../components/AddNew';
 
 const SubjectTasks = () => {
   const [taskList, setTasks] = useState<GetAllTasksItemResponse[]>();
 
+  const getAllTasks = useCallback(
+    () =>
+      TaskApi.getAllTasks()
+        .then((response) => response.data.items)
+        .then(setTasks),
+    []
+  );
+
+  const deleteTask = useCallback((id: string) => TaskApi.deleteTask(id).then(getAllTasks), [getAllTasks]);
+
   useEffect(() => {
-    TaskApi.getAllTasks()
-      .then((response) => response.data.items)
-      .then(setTasks);
-  }, []);
+    getAllTasks();
+  }, [getAllTasks]);
 
   return (
     <div>
@@ -17,11 +27,16 @@ const SubjectTasks = () => {
           <div>{task.title}</div>
           <div className="d-flex align-items-center">
             <div className="me-3 px-2 rounded-3 bg-warning">{task.status}</div>
-            <button className="border-0 bg-secondary me-2">Edit</button>
-            <button className="border-0 bg-secondary">Delete</button>
+            <Link to={`${task.id}/edit`} className="border-0 bg-secondary me-2">
+              Edit
+            </Link>
+            <button onClick={() => deleteTask(task.id)} className="border-0 bg-secondary">
+              Delete
+            </button>
           </div>
         </div>
       ))}
+      <AddNew title="Add task" />
     </div>
   );
 };

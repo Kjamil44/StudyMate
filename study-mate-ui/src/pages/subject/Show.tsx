@@ -1,33 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { GetAllNotesItemResponse, GetNoteReponse, GetSubjectReponse, NoteApi, SubjectApi } from '../../api';
 import EditNote from '../notes/EditNote';
-import { useParams } from 'react-router-dom';
-import { GetSubjectReponse, SubjectApi } from '../../api';
-
 
 interface Props {}
-
-const notes = [
-  {
-    Id: 1,
-    Title: 'Note #1',
-    Description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut arcu nec turpis convallis pretium. Fusce egestas sagittis justo non eleifend. Etiam eget mi risus. Proin lacus metus, pretium vel elit non, iaculis dapibus eros.',
-    BelongsId: 1,
-  },
-  {
-    Id: 2,
-    Title: 'Note #2',
-    Description:
-      'Lorem ipsum dolor sit amet. Quisque ut arcu nec turpis convallis pretium. Fusce egestas sagittis justo non eleifend. Etiam eget mi risus. Proin lacus metus, pretium vel elit non, iaculis dapibus eros.',
-    BelongsId: 1,
-  },
-];
 
 const ShowSubject: React.FC<Props> = () => {
   const { subject: id } = useParams();
   const [subject, setSubject] = useState<GetSubjectReponse>();
+  const [notes, setNotes] = useState<GetAllNotesItemResponse[]>([]);
+
+  const [editNote, setEditNote] = useState<GetNoteReponse>();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const getAllNotes = useCallback(
+    () =>
+      NoteApi.getAllNotes()
+        .then((response) => response.data.items)
+        .then((items) => items.filter((item) => item.belongsId === id))
+        .then(setNotes),
+    [id]
+  );
 
   useEffect(() => {
     if (!id) {
@@ -36,10 +30,13 @@ const ShowSubject: React.FC<Props> = () => {
     SubjectApi.getSubject(id)
       .then((response) => response.data)
       .then(setSubject);
-  }, [id]);
 
-  const showModal = () => {
+    getAllNotes();
+  }, [getAllNotes, id]);
+
+  const handleEditNoteClick = (note: GetNoteReponse) => {
     setIsOpen(true);
+    setEditNote(note);
   };
 
   const handleModalClick = (e: any) => {
@@ -94,14 +91,17 @@ const ShowSubject: React.FC<Props> = () => {
           <label className="form-label fw-bold">Notes</label>
           {notes.map((note) => (
             <div
-              onClick={showModal}
+              onClick={() => handleEditNoteClick(note)}
               className="mt-2 mb-3"
               style={{ padding: '10px', borderRadius: '10px', background: '#B5B5B5', cursor: 'pointer' }}
             >
-              <label className="form-label fw-bold">{note.Title}</label>
-              <div>{note.Description}</div>
+              <label className="form-label fw-bold">{note.title}</label>
+              <div>{note.description}</div>
             </div>
           ))}
+          <Link to="/notes/create" state={{ belongsId: id, belongsName: 'subject' }}>
+            Add note
+          </Link>
         </div>
       </div>
       {isOpen && (
@@ -129,7 +129,7 @@ const ShowSubject: React.FC<Props> = () => {
             }}
             onClick={handleModalClick}
           >
-            <EditNote isModal saveNote={noteSaved} />
+            <EditNote isModal note={editNote} saveNote={noteSaved} />
           </div>
         </div>
       )}
