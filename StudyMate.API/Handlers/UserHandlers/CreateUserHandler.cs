@@ -15,6 +15,7 @@ namespace StudyMate.API.Handlers.UserHandlers
         }
         public class Response
         {
+            public Guid UserId { get; set; }
         }
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -27,7 +28,10 @@ namespace StudyMate.API.Handlers.UserHandlers
                 _session.Store(user);
 
                 await _session.SaveChangesAsync();
-                return new Response();
+                return new Response
+                {
+                    UserId = user.Id
+                };
             }
         }
     }

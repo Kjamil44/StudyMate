@@ -17,6 +17,8 @@ namespace StudyMate.API.Handlers.NoteHandlers
 
         public class Response
         {
+            public Guid BelongsId { get; set; }
+            public string BelongsName { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -41,6 +43,8 @@ namespace StudyMate.API.Handlers.NoteHandlers
 
                 return new Response
                 {
+                    BelongsId = request.BelongsId,
+                    BelongsName = request.BelongsName
                 };
             }
         }

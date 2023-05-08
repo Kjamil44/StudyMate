@@ -20,6 +20,8 @@ namespace StudyMate.API.Handlers.SubjectHandlers
 
         public class Response
         {
+            public Guid UserId { get; set;}
+            public Guid SubjectId { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -42,7 +44,11 @@ namespace StudyMate.API.Handlers.SubjectHandlers
                 _session.Store(subject);
                 await _session.SaveChangesAsync();
 
-                return new Response();
+                return new Response
+                {
+                    UserId = user.Id,
+                    SubjectId = subject.Id,
+                };
             }
         }
     }
