@@ -18,7 +18,7 @@ const get = (url: RequestInfo | URL, init?: RequestInit) => {
   });
 };
 
-const post = (url: RequestInfo | URL, data: string, init?: RequestInit) => {
+const post = <T>(url: RequestInfo | URL, data: T, init?: RequestInit) => {
   return fetch(`${baseUrl}${url}`, {
     method: 'post',
     body: JSON.stringify(data),
@@ -31,7 +31,7 @@ const post = (url: RequestInfo | URL, data: string, init?: RequestInit) => {
   });
 };
 
-const put = (url: RequestInfo | URL, data: string, init?: RequestInit) => {
+const put = <T>(url: RequestInfo | URL, data: T, init?: RequestInit) => {
   return fetch(`${baseUrl}${url}`, {
     method: 'put',
     body: JSON.stringify(data),

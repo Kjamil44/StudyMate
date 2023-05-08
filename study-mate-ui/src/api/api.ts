@@ -23,8 +23,6 @@ import {
   GetUserReponse,
   LoginRequest,
   LoginResponse,
-  RegisterRequest,
-  RegisterResponse,
   UpdateNoteRequest,
   UpdateNoteResponse,
   UpdateSubjectRequest,
@@ -35,19 +33,14 @@ import {
   UpdateUserResponse,
 } from './types';
 
-const authUrl = '/auth';
-const LOGIN = `${authUrl}`;
-const REGISTER = `${authUrl}/register`;
+const accountUrl = '/account';
+const LOGIN = `${accountUrl}/login`;
 
 const login = (body: LoginRequest): Promise<FetchResponse<LoginResponse>> => {
-  return api.post(LOGIN, JSON.stringify(body)).then((response) => createFetchResponse(response));
+  return api.post(LOGIN, body).then((response) => createFetchResponse(response));
 };
 
-const register = (body: RegisterRequest): Promise<FetchResponse<RegisterResponse>> => {
-  return api.post(REGISTER, JSON.stringify(body)).then((response) => createFetchResponse(response));
-};
-
-export const AuthApi = { login, register };
+export const AuthApi = { login };
 
 const notesUrl = '/notes';
 const GET_ALL_NOTES = `${notesUrl}/all`;
@@ -65,12 +58,12 @@ const getNote = (id: string): Promise<FetchResponse<GetNoteReponse>> => {
 };
 
 const createNote = (body: CreateNoteRequest): Promise<FetchResponse<CreateNoteResponse>> => {
-  return api.post(CREATE_NOTE, JSON.stringify(body)).then((response) => createFetchResponse(response));
+  return api.post(CREATE_NOTE, body).then((response) => createFetchResponse(response));
 };
 
 const updateNote = (id: string, body: UpdateNoteRequest): Promise<FetchResponse<UpdateNoteResponse>> => {
   return api
-    .put(UPDATE_NOTE.replace('{id}', id), JSON.stringify(body))
+    .put(UPDATE_NOTE.replace('{id}', id), body)
     .then((response) => createFetchResponse(response));
 };
 
@@ -96,12 +89,12 @@ const getSubject = (id: string): Promise<FetchResponse<GetSubjectReponse>> => {
 };
 
 const createSubject = (body: CreateSubjectRequest): Promise<FetchResponse<CreateSubjectResponse>> => {
-  return api.post(CREATE_SUBJECT, JSON.stringify(body)).then((response) => createFetchResponse(response));
+  return api.post(CREATE_SUBJECT, body).then((response) => createFetchResponse(response));
 };
 
 const updateSubject = (id: string, body: UpdateSubjectRequest): Promise<FetchResponse<UpdateSubjectResponse>> => {
   return api
-    .put(UPDATE_SUBJECT.replace('{id}', id), JSON.stringify(body))
+    .put(UPDATE_SUBJECT.replace('{id}', id), body)
     .then((response) => createFetchResponse(response));
 };
 
@@ -127,12 +120,12 @@ const getTask = (id: string): Promise<FetchResponse<GetTaskReponse>> => {
 };
 
 const createTask = (body: CreateTaskRequest): Promise<FetchResponse<CreateTaskResponse>> => {
-  return api.post(CREATE_TASK, JSON.stringify(body)).then((response) => createFetchResponse(response));
+  return api.post(CREATE_TASK, body).then((response) => createFetchResponse(response));
 };
 
 const updateTask = (id: string, body: UpdateTaskRequest): Promise<FetchResponse<UpdateTaskResponse>> => {
   return api
-    .put(UPDATE_TASK.replace('{id}', id), JSON.stringify(body))
+    .put(UPDATE_TASK.replace('{id}', id), body)
     .then((response) => createFetchResponse(response));
 };
 
@@ -158,12 +151,12 @@ const getUser = (id: string): Promise<FetchResponse<GetUserReponse>> => {
 };
 
 const createUser = (body: CreateUserRequest): Promise<FetchResponse<CreateUserResponse>> => {
-  return api.post(CREATE_USER, JSON.stringify(body)).then((response) => createFetchResponse(response));
+  return api.post(CREATE_USER, body).then((response) => createFetchResponse(response));
 };
 
 const updateUser = (id: string, body: UpdateUserRequest): Promise<FetchResponse<UpdateUserResponse>> => {
   return api
-    .put(UPDATE_USER.replace('{id}', id), JSON.stringify(body))
+    .put(UPDATE_USER.replace('{id}', id), body)
     .then((response) => createFetchResponse(response));
 };
 

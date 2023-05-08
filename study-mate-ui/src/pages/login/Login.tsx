@@ -25,7 +25,7 @@ const Login: React.FC = () => {
       .then((response) => response.data)
       .then((data) => localStorage.setItem('userId', data.userId))
       .then(() => navigate('/subjects'))
-      .catch(() => setError('Wrong email or password, try again.'));
+      .catch(() => setError('Wrong email or password, try again.'))
   };
 
   return (
