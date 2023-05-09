@@ -2,9 +2,12 @@ version: '3'
 services:
   study-mate-ui:
     container_name: ui
-    build: study-mate-ui
+    build: 
+      context: study-mate-ui
+      args: 
+        - STUDY_MATE_API_BASE_URL=http://localhost/api/api
     ports:
-      - 80:3000
+      - 3000:3000
     depends_on:
       - study-mate-api
   study-mate-api:
@@ -23,3 +26,12 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=StudyMateDb
+  study-mate-nginx:
+    container_name: nginx
+    build: .
+    ports:
+      - 80:80
+      - 433:433
+    depends_on:
+      - study-mate-ui
+      - study-mate-api

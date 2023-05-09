@@ -3,13 +3,14 @@ FROM node:16-alpine
 WORKDIR /study-mate-ui
 
 COPY . .
-COPY .env.production .env
+
+ARG STUDY_MATE_API_BASE_URL
+ENV REACT_APP_STUDY_MATE_API_BASE_URL ${STUDY_MATE_API_BASE_URL}
+ENV NODE_ENV 'production'
 
 RUN npm ci
 RUN npm run build
 RUN npm install -g serve
-
-ENV NODE_ENV 'production'
 
 EXPOSE 3000
 
