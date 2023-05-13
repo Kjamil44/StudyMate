@@ -27,7 +27,7 @@ namespace StudyMate.API.Controllers
             return Ok(await _sender.Send(newNote));
         }
 
-        [HttpDelete("delete/{subjectId}")]
+        [HttpDelete("delete/{noteId}")]
         public async Task<IActionResult> DeleteNote(Guid noteId) => Ok(await _sender.Send(new DeleteNote.Request { Id = noteId }));
     }
 }

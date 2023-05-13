@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { GetNoteReponse, NoteApi } from '../../api';
+import { GetNoteReponse, NoteApi, UpdateNoteRequest } from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 type EditNoteProps = {
   isModal: boolean;
@@ -8,9 +9,15 @@ type EditNoteProps = {
   saveNote?: () => void;
 };
 
+type UpdateNoteRequestForm = {
+  [T in keyof UpdateNoteRequest]: { value?: any };
+};
+
+
 const EditNote = ({ isModal, saveNote, note: propNote }: EditNoteProps) => {
   const [note, setNote] = useState<GetNoteReponse | undefined>(propNote);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (note) {
@@ -26,10 +33,20 @@ const EditNote = ({ isModal, saveNote, note: propNote }: EditNoteProps) => {
       .then(setNote);
   }, [note, id]);
 
-  const save = () => {
-    if (propNote?.id) {
-      NoteApi.updateNote(id ?? propNote?.id, propNote).then(saveNote);
+  const save = (event: React.SyntheticEvent) => {
+    if (!note?.id) {
+      return;
     }
+
+    event.preventDefault();
+    const values = event.target as unknown as UpdateNoteRequestForm;
+    const request: UpdateNoteRequest = {
+      id: note?.id ?? id,
+      title: values.title.value ?? '',
+      description: values.description.value ?? ''
+    };
+
+    NoteApi.updateNote(note?.id ?? id, request).then(saveNote).then(x => navigate(-1));
   };
 
   return (
@@ -41,23 +58,25 @@ const EditNote = ({ isModal, saveNote, note: propNote }: EditNoteProps) => {
           height: isModal ? '100%' : 'auto',
         }}
       >
-        <div className="d-sm-flex justify-content-between mb-2">
-          <div className="me-sm-1 w-100">
-            <label className="form-label">Title</label>
-            <div>
-              <input name="title" defaultValue={note?.title} className="w-100" />
+        <form onSubmit={save}>
+          <div className="d-sm-flex justify-content-between mb-2">
+            <div className="me-sm-1 w-100">
+              <label className="form-label">Title</label>
+              <div>
+                <input name="title" defaultValue={note?.title} className="w-100" />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="w-100 mb-3">
-          <label className="form-label">Description</label>
-          <div>
-            <textarea name="description" defaultValue={note?.description} className="w-100" rows={8} />
+          <div className="w-100 mb-3">
+            <label className="form-label">Description</label>
+            <div>
+              <textarea name="description" defaultValue={note?.description} className="w-100" rows={8} />
+            </div>
           </div>
-        </div>
-        <button className="text-center border-0 text-white py-2 bg-secondary rounded-3" onClick={save}>
-          Save Note
-        </button>
+          <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">
+            Save Note
+          </button>
+        </form>
       </div>
     </div>
   );

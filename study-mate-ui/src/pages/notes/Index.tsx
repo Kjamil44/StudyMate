@@ -15,7 +15,8 @@ const NotesIndexPage: React.FC<Props> = () => {
     () =>
       NoteApi.getAllNotes()
         .then((response) => response.data.items)
-        .then(setNotes),
+        .then(setNotes)
+        .catch(() => setNotes([])),
     []
   );
 
@@ -76,7 +77,7 @@ const NotesIndexPage: React.FC<Props> = () => {
         {filteredNotes?.map((note, index) => (
           <Note onDelete={getAllNotes} key={index} note={note} />
         ))}
-        <AddNew title="Add subject" />
+        <AddNew title="Add note" />
       </div>
     </div>
   );

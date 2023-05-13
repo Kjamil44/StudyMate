@@ -16,8 +16,8 @@ const CreateNote = () => {
     const request: CreateNoteRequest = {
       title: values.title.value ?? '',
       description: values.description.value ?? '',
-      belongsId: location.state.belongsId,
-      belongsName: location.state.belongsName,
+      belongsId: location.state?.belongsId ?? localStorage.getItem("userId"),
+      belongsName: location.state?.belongsName ?? "User",
     };
 
     NoteApi.createNote(request).then(() => navigate('/subjects', { state: {} }));
