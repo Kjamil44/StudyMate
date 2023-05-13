@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GetAllNotesItemResponse } from '../../api';
+import { GetAllNotesItemResponse, NoteApi } from '../../api';
 
 interface NoteProps {
   note: GetAllNotesItemResponse;
+  onDelete?: () => void;
 }
 
-const Note: React.FC<NoteProps> = ({ note }: NoteProps) => {
+const Note: React.FC<NoteProps> = ({ note, onDelete }: NoteProps) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const openDeleteModal = () => {
@@ -15,6 +16,12 @@ const Note: React.FC<NoteProps> = ({ note }: NoteProps) => {
 
   const handleModalClick = (e: any) => {
     e.stopPropagation();
+  };
+
+  const handleDeleteNote = (id: string) => {
+    NoteApi.deleteNote(id)
+      .then(onDelete)
+      .then(() => setShowDeleteModal(false));
   };
 
   const buttons = {
@@ -98,8 +105,8 @@ const Note: React.FC<NoteProps> = ({ note }: NoteProps) => {
                 >
                   Cancel
                 </div>
-                <Link
-                  to={'note/delete/' + note.id}
+                <button
+                  onClick={() => handleDeleteNote(note.id)}
                   style={{
                     marginRight: '20px',
                     padding: '10px',
@@ -113,7 +120,7 @@ const Note: React.FC<NoteProps> = ({ note }: NoteProps) => {
                   }}
                 >
                   Delete
-                </Link>
+                </button>
               </div>
             </div>
           </div>

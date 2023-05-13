@@ -101,10 +101,14 @@ export type GetAllTasksResponse = {
 };
 
 export interface GetTaskReponse {
+  id: string;
+  subjectId: string;
   title: string;
   description: string;
-  belongsId: string;
-  belongsName: string;
+  dateCreated: Date;
+  dueDate: Date;
+  priorityLevel: PriorityLevel;
+  status: StatusEnum;
 }
 
 export interface CreateTaskResponse {}

@@ -1,11 +1,35 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { GetNoteReponse, NoteApi } from '../../api';
+
 type EditNoteProps = {
   isModal: boolean;
+  note?: GetNoteReponse;
   saveNote?: () => void;
 };
 
-const EditNote = ({ isModal, saveNote }: EditNoteProps) => {
+const EditNote = ({ isModal, saveNote, note: propNote }: EditNoteProps) => {
+  const [note, setNote] = useState<GetNoteReponse | undefined>(propNote);
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (note) {
+      return;
+    }
+
+    if (!id) {
+      throw new Error("Can't edit note");
+    }
+
+    NoteApi.getNote(id)
+      .then((response) => response.data)
+      .then(setNote);
+  }, [note, id]);
+
   const save = () => {
-    saveNote && saveNote();
+    if (propNote?.id) {
+      NoteApi.updateNote(id ?? propNote?.id, propNote).then(saveNote);
+    }
   };
 
   return (
@@ -21,14 +45,14 @@ const EditNote = ({ isModal, saveNote }: EditNoteProps) => {
           <div className="me-sm-1 w-100">
             <label className="form-label">Title</label>
             <div>
-              <input name="title" className="w-100" />
+              <input name="title" defaultValue={note?.title} className="w-100" />
             </div>
           </div>
         </div>
         <div className="w-100 mb-3">
           <label className="form-label">Description</label>
           <div>
-            <textarea name="due_date" className="w-100" rows={8} />
+            <textarea name="description" defaultValue={note?.description} className="w-100" rows={8} />
           </div>
         </div>
         <button className="text-center border-0 text-white py-2 bg-secondary rounded-3" onClick={save}>

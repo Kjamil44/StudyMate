@@ -104,7 +104,7 @@ const deleteSubject = (id: string): Promise<FetchResponse<DeleteSubjectResponse>
 
 export const SubjectApi = { getAllSubjects, getSubject, createSubject, updateSubject, deleteSubject };
 
-const tasksUrl = '/tasks';
+const tasksUrl = '/task';
 const GET_ALL_TASKS = `${tasksUrl}/all`;
 const GET_TASK = `${tasksUrl}/{id}`;
 const CREATE_TASK = `${tasksUrl}/create`;

@@ -16,7 +16,7 @@ const CreateNote = () => {
     const request: CreateNoteRequest = {
       title: values.title.value ?? '',
       description: values.description.value ?? '',
-      belongsId: location.state.belongsName,
+      belongsId: location.state.belongsId,
       belongsName: location.state.belongsName,
     };
 
