@@ -19,7 +19,8 @@ const ShowSubject: React.FC<Props> = () => {
       NoteApi.getAllNotes()
         .then((response) => response.data.items)
         .then((items) => items.filter((item) => item.belongsId === id))
-        .then(setNotes),
+        .then(setNotes)
+        .catch(() => setNotes([])),
     [id]
   );
 
@@ -45,6 +46,7 @@ const ShowSubject: React.FC<Props> = () => {
 
   const noteSaved = () => {
     setIsOpen(false);
+    getAllNotes();
   };
 
   return (

@@ -20,7 +20,7 @@ const CreateNote = () => {
       belongsName: location.state?.belongsName ?? "User",
     };
 
-    NoteApi.createNote(request).then(() => navigate('/subjects', { state: {} }));
+    NoteApi.createNote(request).then(() => navigate('/notes', { state: {} }));
   };
 
   return (

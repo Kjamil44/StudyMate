@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { GetNoteReponse, NoteApi, UpdateNoteRequest } from '../../api';
 import { useNavigate } from 'react-router-dom';
+import { GetNoteReponse, NoteApi, UpdateNoteRequest } from '../../api';
 
 type EditNoteProps = {
   isModal: boolean;
@@ -12,7 +12,6 @@ type EditNoteProps = {
 type UpdateNoteRequestForm = {
   [T in keyof UpdateNoteRequest]: { value?: any };
 };
-
 
 const EditNote = ({ isModal, saveNote, note: propNote }: EditNoteProps) => {
   const [note, setNote] = useState<GetNoteReponse | undefined>(propNote);
@@ -43,10 +42,12 @@ const EditNote = ({ isModal, saveNote, note: propNote }: EditNoteProps) => {
     const request: UpdateNoteRequest = {
       id: note?.id ?? id,
       title: values.title.value ?? '',
-      description: values.description.value ?? ''
+      description: values.description.value ?? '',
     };
 
-    NoteApi.updateNote(note?.id ?? id, request).then(saveNote).then(x => navigate(-1));
+    NoteApi.updateNote(note?.id ?? id, request)
+      .then(saveNote)
+      .then(() => !isModal && navigate(-1));
   };
 
   return (
@@ -73,9 +74,7 @@ const EditNote = ({ isModal, saveNote, note: propNote }: EditNoteProps) => {
               <textarea name="description" defaultValue={note?.description} className="w-100" rows={8} />
             </div>
           </div>
-          <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">
-            Save Note
-          </button>
+          <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">Save Note</button>
         </form>
       </div>
     </div>
