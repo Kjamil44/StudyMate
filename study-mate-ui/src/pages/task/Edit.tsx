@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GetTaskReponse, PriorityLevelObject, StatusEnumObject, TaskApi, UpdateTaskRequest } from '../../api';
+import { formatDate } from '../../utils';
 
 type UpdateaskRequestForm = {
   [T in keyof UpdateTaskRequest]: { value?: any };
@@ -38,7 +39,7 @@ const EditTask = () => {
       status: values.status.value ?? '',
     };
 
-    TaskApi.updateTask(taskId, request).then(() => navigate('/tasks'));
+    TaskApi.updateTask(taskId, request).then(() => navigate(`/subjects/${subject}/tasks`));
   };
 
   return (
@@ -55,7 +56,12 @@ const EditTask = () => {
             <div className="ms-sm-1 w-100">
               <label className="form-label">Due Date</label>
               <div>
-                <input name="dueDate" defaultValue={task?.dueDate.toString()} type="date" className="w-100" />
+                <input
+                  name="dueDate"
+                  defaultValue={formatDate(task?.dueDate.toString())}
+                  type="date"
+                  className="w-100"
+                />
               </div>
             </div>
           </div>
@@ -66,7 +72,9 @@ const EditTask = () => {
                 <select name="priorityLevel" defaultValue={task?.priorityLevel} className="me-sm-1 w-100">
                   <option value={-1}>Select Priority</option>
                   {Object.entries(PriorityLevelObject).map(([name, id]) => (
-                    <option value={id}>{name}</option>
+                    <option value={id} selected={id === task?.priorityLevel}>
+                      {name}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -77,7 +85,9 @@ const EditTask = () => {
                 <select name="status" defaultValue={task?.status} className="me-sm-1 w-100">
                   <option value={-1}>Select Status</option>
                   {Object.entries(StatusEnumObject).map(([name, id]) => (
-                    <option value={id}>{name}</option>
+                    <option value={id} selected={id === task?.status}>
+                      {name}
+                    </option>
                   ))}
                 </select>
               </div>

@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 
-type Props = { title: string };
+type Props = {
+  title: string;
+  state?  : Record<string, any | undefined>;
+};
 
-const AddNew: React.FC<Props> = ({ title }) => {
+const AddNew: React.FC<Props> = ({ title, state }) => {
   const borderDashed = {
     border: '0.5px dashed #4e4e4e',
   };
@@ -13,6 +16,7 @@ const AddNew: React.FC<Props> = ({ title }) => {
         className="text-decoration-none d-flex flex-column justify-content-center align-items-center rounded rounded-3 h-100 w-100 p-5"
         style={borderDashed}
         to={'create'}
+        state={state}
       >
         <div className="mb-1 bg-success text-dark rounded rounded-circle px-2 d-flex align-items-center justify-content-center">
           +

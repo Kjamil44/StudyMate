@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { GetSubjectReponse, StatusEnumObject, SubjectApi, UpdateSubjectRequest } from '../../api';
 import { useEffect, useState } from 'react';
+import { formatDate } from '../../utils';
 
 type UpdateSubjectRequestForm = {
   [T in keyof UpdateSubjectRequest]: { value?: any };
@@ -35,11 +36,13 @@ const EditSubject = () => {
       startDate: values.startDate.value ?? '',
       endDate: values.endDate.value ?? '',
       grade: values.grade.value ?? 2,
-      status: values.grade.value ?? 0,
+      status: values.status.value ?? 0,
     };
 
     SubjectApi.updateSubject(id, request).then(() => navigate('/subjects'));
   };
+
+  console.log(subject);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -63,13 +66,13 @@ const EditSubject = () => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Start Date</label>
               <div>
-                <input name="startDate" defaultValue={subject?.startDate.toString()} type="date" className="w-100" />
+                <input name="startDate" defaultValue={formatDate(subject?.startDate.toString())} type="date" className="w-100" />
               </div>
             </div>
             <div className="ms-sm-1 w-100">
               <label className="form-label">End Date</label>
               <div>
-                <input name="endDate" defaultValue={subject?.endDate.toString()} type="date" className="w-100" />
+                <input name="endDate" defaultValue={formatDate(subject?.endDate.toString())} type="date" className="w-100" />
               </div>
             </div>
           </div>
@@ -79,7 +82,9 @@ const EditSubject = () => {
               <div>
                 <select name="status" defaultValue={subject?.status} className="w-100">
                   {Object.entries(StatusEnumObject).map(([name, id]) => (
-                    <option value={id}>{name}</option>
+                    <option value={id} selected={id === subject?.status}>
+                      {name}
+                    </option>
                   ))}
                 </select>
               </div>

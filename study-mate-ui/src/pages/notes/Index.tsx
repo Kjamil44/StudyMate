@@ -1,15 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { GetAllNotesItemResponse, GetAllSubjectsItemResponse, NoteApi, SubjectApi } from '../../api';
-import Note from './Note';
-import { Link } from 'react-router-dom';
 import AddNew from '../../components/AddNew';
+import Note from './Note';
 
-interface Props {}
-
-const NotesIndexPage: React.FC<Props> = () => {
+const NotesIndexPage: React.FC = () => {
   const [notes, setNotes] = useState<GetAllNotesItemResponse[]>();
   const [subjects, setSubjects] = useState<GetAllSubjectsItemResponse[]>();
-  const [selectedSubject, setSelectedSubject] = useState<string>('All');
+  const [selectedSubject, setSelectedSubject] = useState<GetAllSubjectsItemResponse>();
 
   const getAllNotes = useCallback(
     () =>
@@ -25,17 +22,15 @@ const NotesIndexPage: React.FC<Props> = () => {
 
     SubjectApi.getAllSubjects()
       .then((response) => response.data.items)
-      .then((items) => {
-        setSelectedSubject(items[0].id);
-        setSubjects(items);
-      });
+      .then(setSubjects);
   }, [getAllNotes]);
 
   const handleSelectedSubjectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedSubject(event.target.value);
+    const subject = subjects?.find((subject) => subject.id === event.target.value);
+    setSelectedSubject(subject);
   };
 
-  const filteredNotes = notes?.filter((note) => selectedSubject === 'All' || note.belongsId === selectedSubject);
+  const filteredNotes = notes?.filter((note) => !selectedSubject || note.belongsId === selectedSubject?.id);
 
   return (
     <div className="container vh-100">
@@ -64,7 +59,7 @@ const NotesIndexPage: React.FC<Props> = () => {
             id="subjects"
             style={{ height: '40px', fontSize: '1.2rem', borderRadius: '10px', cursor: 'pointer' }}
             onChange={handleSelectedSubjectChange}
-            value={selectedSubject}
+            value={selectedSubject?.id}
           >
             <option value="All">All</option>
             {subjects?.map((subject) => (
@@ -77,7 +72,14 @@ const NotesIndexPage: React.FC<Props> = () => {
         {filteredNotes?.map((note, index) => (
           <Note onDelete={getAllNotes} key={index} note={note} />
         ))}
-        <AddNew title="Add note" />
+        <AddNew
+          title="Add note"
+          state={{
+            belongsId: selectedSubject?.id,
+            belongsName: selectedSubject ? 'SUBJECT' : undefined,
+            selectedSubject,
+          }}
+        />
       </div>
     </div>
   );

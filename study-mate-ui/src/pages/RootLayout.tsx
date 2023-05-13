@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Nav, NavDropdown, Navbar } from 'react-bootstrap';
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import '../App.css';
 import studyMateLogo from '../assets/studymate2.png';
 import Button from '../components/button/Button';
@@ -9,6 +9,7 @@ const RootLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
+  const { subject } = useParams();
 
   useEffect(() => {
     if (location.pathname === '/login') {
@@ -44,6 +45,7 @@ const RootLayout = () => {
       <div className={`sidebar${showSidebar ? ' show' : ''}`}>
         <Nav className="flex-column">
           <Nav.Link as={Link} to="/subjects" className="bg-white text-dark mx-4 rounded rounded-3 mb-3">Subjects</Nav.Link>
+            {subject && <Nav.Link as={Link} to={`/subjects/${subject}/tasks`} className="bg-white text-dark mx-4 rounded rounded-3 mb-3">Tasks</Nav.Link>}
           <Nav.Link as={Link} to="/notes" className="bg-white text-dark mx-4 rounded rounded-3 mb-3">Notes</Nav.Link>
           <Button label="Logout" className="mt-3 text-dark bg-white mx-4 rounded rounded-3 d-lg-none" onClick={handleLogout}/>
         </Nav>

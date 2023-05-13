@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GetAllNotesItemResponse, NoteApi } from '../../api';
-import { useNavigate } from 'react-router-dom';
 
 interface NoteProps {
   note: GetAllNotesItemResponse;
@@ -10,7 +9,6 @@ interface NoteProps {
 
 const Note: React.FC<NoteProps> = ({ note, onDelete }: NoteProps) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const navigate = useNavigate();
 
   const openDeleteModal = () => {
     setShowDeleteModal(true);

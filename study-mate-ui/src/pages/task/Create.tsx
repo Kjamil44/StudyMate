@@ -21,7 +21,7 @@ const CreateTask = () => {
       status: values.status.value ?? '',
     };
 
-    TaskApi.createTask(request).then(() => navigate('/tasks'));
+    TaskApi.createTask(request).then(() => navigate(`/subjects/${subject}/tasks`));
   };
   
   return (
@@ -58,6 +58,7 @@ const CreateTask = () => {
               <label className="form-label">Status</label>
               <div>
                 <select name="status" className="me-sm-1 w-100">
+                  <option value={-1}>Select Status</option>
                   {Object.entries(StatusEnumObject).map(([name, id]) => (
                     <option value={id}>{name}</option>
                   ))}

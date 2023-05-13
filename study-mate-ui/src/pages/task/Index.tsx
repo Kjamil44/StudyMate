@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { GetAllTasksItemResponse, TaskApi } from '../../api';
+import { GetAllTasksItemResponse, StatusEnumObject, TaskApi } from '../../api';
 import { Link } from 'react-router-dom';
 import AddNew from '../../components/AddNew';
 
@@ -14,7 +14,13 @@ const SubjectTasks = () => {
     []
   );
 
-  const deleteTask = useCallback((id: string) => TaskApi.deleteTask(id).then(getAllTasks), [getAllTasks]);
+  const deleteTask = useCallback(
+    (id: string) =>
+      TaskApi.deleteTask(id)
+        .then(getAllTasks)
+        .catch(() => setTasks([])),
+    [getAllTasks]
+  );
 
   useEffect(() => {
     getAllTasks();
@@ -26,7 +32,7 @@ const SubjectTasks = () => {
         <div className="d-flex align-items-center justify-content-between py-2 px-3 mx-3 rounded-3 bg-secondary mb-3">
           <div>{task.title}</div>
           <div className="d-flex align-items-center">
-            <div className="me-3 px-2 rounded-3 bg-warning">{task.status}</div>
+            <div className="me-3 px-2 rounded-3 bg-warning">{Object.keys(StatusEnumObject)[task.status]}</div>
             <Link to={`${task.id}/edit`} className="border-0 bg-secondary me-2">
               Edit
             </Link>
