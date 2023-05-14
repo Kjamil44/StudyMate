@@ -1,10 +1,10 @@
-import { FetchResponse } from "./types";
+import { FetchResponse } from './types';
 
-const baseUrl = process.env.REACT_APP_STUDY_MATE_API_BASE_URL;
+const baseUrl = window.env?.REACT_APP_STUDY_MATE_API_BASE_URL ?? process.env.REACT_APP_STUDY_MATE_API_BASE_URL;
 
 export const createFetchResponse = async <T>(response: Response): Promise<FetchResponse<T>> => ({
   ...response,
-  data: await response.json() as unknown as T,
+  data: (await response.json()) as unknown as T,
 });
 
 const get = (url: RequestInfo | URL, init?: RequestInit) => {

@@ -32,7 +32,7 @@ const RootLayout = () => {
 
     return (
       <div className="App">
-      <Navbar className="d-lg-flex justify-content-lg-end" bg="dark" expand="lg">
+      <Navbar className="d-lg-flex justify-content-lg-end" expand="lg">
         <Navbar.Brand href="/subjects" className="text-white ms-3 d-lg-none">Study Mate</Navbar.Brand>
         <div className='position-relative mx-auto'>
           <img className='position-relative' draggable="false" alt='' style={{height: "30px"}} src={studyMateLogo}/>

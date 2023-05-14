@@ -24,11 +24,11 @@ namespace StudyMate.API.Handlers.UserHandlers
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-                // var userAlreadyExists = _session.Query<User>().FirstOrDefaultAsync(x => x.Email == request.Email);
-                // if(userAlreadyExists != null)
-                // {
-                //     throw new Exception("User already exists.");
-                // }
+                var userAlreadyExists = await _session.Query<User>().FirstOrDefaultAsync(x => x.Email == request.Email);
+                if(userAlreadyExists != null)
+                {
+                    throw new Exception("User already exists.");
+                }
 
                 var user = new User(request.Name, request.Surname, request.Email, request.Password);
                 _session.Store(user);

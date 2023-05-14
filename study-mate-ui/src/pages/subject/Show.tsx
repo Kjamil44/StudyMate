@@ -1,7 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { GetAllNotesItemResponse, GetNoteReponse, GetSubjectReponse, NoteApi, SubjectApi } from '../../api';
+import {
+  GetAllNotesItemResponse,
+  GetNoteReponse,
+  GetSubjectReponse,
+  NoteApi,
+  StatusEnumObject,
+  SubjectApi,
+} from '../../api';
 import EditNote from '../notes/EditNote';
+import { formatDate } from '../../utils';
 
 interface Props {}
 
@@ -72,17 +80,17 @@ const ShowSubject: React.FC<Props> = () => {
         <div className="d-sm-flex justify-content-between mb-2">
           <div className="w-100">
             <label className="form-label fw-bold">Start Date</label>
-            <div>{subject?.startDate.toString()}</div>
+            <div>{formatDate(subject?.startDate.toString())}</div>
           </div>
           <div className="w-100">
             <label className="form-label fw-bold">End Date</label>
-            <div>{subject?.endDate.toString()}</div>
+            <div>{formatDate(subject?.endDate.toString())}</div>
           </div>
         </div>
         <div className="mb-2">
           <div className="w-100">
             <label className="form-label fw-bold">Status</label>
-            <div>{subject?.status}</div>
+            <div>{Object.keys(StatusEnumObject)[subject?.status ?? 0]}</div>
           </div>
         </div>
         <div className="w-100 mb-3">

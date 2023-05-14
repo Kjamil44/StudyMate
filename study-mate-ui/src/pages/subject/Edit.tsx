@@ -58,7 +58,7 @@ const EditSubject = () => {
             <div className="ms-sm-1 w-100">
               <label className="form-label">Grade</label>
               <div>
-                <input name="grade" type="number" defaultValue={subject?.grade} className="w-100" />
+                <input name="grade" type="number" min={1} max={10} defaultValue={subject?.grade} className="w-100" />
               </div>
             </div>
           </div>

@@ -85,17 +85,13 @@ const Register: React.FC = () => {
       UserApi.createUser(request)
         .then((response) => response.data)
         .then((data) => localStorage.setItem('userId', data.userId))
-        .then(() => navigate('/subjects'));
+        .then(() => navigate('/subjects'))
+        .catch(() => setSignupError(`Email ${enteredEmail} already exists!`));
     }
 
 
   return (
-    <div className='page'>
-
-
-
-
-    
+    <div className='page'>    
     <div className='container-custom-class'>
     <div className='logo-container'>
         <img className='logo' src={Logo} alt='logo'/>
@@ -145,8 +141,6 @@ const Register: React.FC = () => {
         }
     </form>
     </div>
-
-
     </div>
   )
 }

@@ -2,10 +2,9 @@ version: '3'
 services:
   study-mate-ui:
     container_name: ui
-    build: 
-      context: study-mate-ui
-      args: 
-        - STUDY_MATE_API_BASE_URL=http://localhost/api/api
+    build: study-mate-ui
+    environment:
+      - REACT_APP_STUDY_MATE_API_BASE_URL=http://localhost/api/api
     ports:
       - 3000:3000
     depends_on:
