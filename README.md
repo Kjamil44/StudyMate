@@ -1,6 +1,9 @@
 # StudyMate
 Тимски проект по Управување на ИКТ проекти - Тим 5
 
+# Azure Deployment
+https://studymate.azurewebsites.net/
+
 # Setup project
 ## 1. Clone repository
 ```
