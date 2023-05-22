@@ -1,0 +1,115 @@
+.task-list {
+    position: relative;
+    top: 24px;
+    font-family: "Montserrat", sans-serif;
+    width: 90%;
+    margin: 0px auto;
+    padding-bottom: 12px;
+    
+}
+
+.task-item {
+ background-color: white;
+ border: 1px solid lightgray;
+ margin-bottom: 24px;
+ display: flex;
+ min-height: 80px;
+ height: 100%;
+ padding-left: 18px;
+ border-radius: 12px;
+ align-items: center;
+ overflow: hidden;
+ transition: border 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+ 
+}
+
+.task-item__status-container {
+    height: 100%;
+    border-right: 2px solid lightgray;
+    margin-right: 16px;
+    padding-right: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.task-item__status {
+    font-weight: bold;
+    padding: 6px;
+    border-radius: 8px;
+    width: 68px;
+    text-align: center;
+}
+
+.task-item__title {
+    position: relative;
+    width: 100%;
+    margin-top: -6px;
+    font-weight: 800;
+    color: #4d716a;
+    font-size: 1rem;
+    padding-top: 14px;
+    
+}
+
+.task-item__description {
+    position: relative;
+    width: 100%;
+    padding-right: 8px;
+    color: #678983;
+    font-size: 1rem;
+    word-wrap: break-word;
+    padding-bottom: 12px;
+}
+.task-item__content {
+    width: 90%;
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.task-item__buttons {
+    position: relative;
+    left: 220px;
+    margin: 0;
+    margin-left: auto;
+    padding: 0;
+    padding-right: 12px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: rotateX(90deg);
+    opacity: 0;
+}
+
+.task-item:hover .task-item__buttons {
+    left: 0px;
+    transform: rotateX(0deg);
+    opacity: 1;
+}
+
+.task-item:hover .task-item__content {
+    width: 72%;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.task-item:hover {
+    border: 1px solid #678983;
+}
+
+.tasks-header__container {
+    width: 90%;
+    margin: 0px auto;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 28px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid lightgray;
+    display: flex;
+    align-items: center;
+}
+
+.tasks-header__text {
+    color: #4d716a; 
+    font-weight: 400;
+    font-size: 48px;
+}
+
+

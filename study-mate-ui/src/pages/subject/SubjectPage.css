@@ -1,0 +1,143 @@
+.subjects-header__container {
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 28px;
+    margin-bottom: 24px;
+}
+
+.subjects-header__text {
+    color: #4d716a; 
+    font-weight: 400;
+    font-size: 48px;
+    border-bottom: 2px solid lightgray;
+    width: 90%;
+    margin: 0px auto;
+    padding-bottom: 24px;
+}
+.subject-status {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 16px;
+    margin-left: 4px;
+    border-radius: 8px;
+    width: 112px;
+    text-align: center;
+    box-shadow: 0px 2px 4px rgb(0, 0, 0);
+    margin-left: 36px;
+}
+
+.subject-details {
+    width: 100%;
+    padding: 36px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.subject-details__title {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #678983;
+}
+
+.subject-details__data {
+    color: #678983;
+}
+
+.subject-details__header {
+    display: flex;
+    align-items: center;
+
+}
+.subject-details__name {
+    color: #4d716a;
+    font-size: 56px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+.subject-details__grade-container {
+    position: relative;
+    top: -12px;
+    display:flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 2px solid lightgray;
+    padding-bottom: 12px;
+ 
+
+}
+
+.subject-details__grade-label {
+    margin: 0;
+    padding-right: 12px;
+    font-size: 32px;
+    color: #77a598;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin-left: 8px;
+    
+}
+.subject-details__grade-data {
+    font-size: 32px;
+    color: #77a598;
+    text-transform: uppercase;
+    font-weight: normal;
+    
+}
+
+.subject-details__date-container {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;   
+    margin-bottom: 24px;
+}
+.subject-details__label {
+    text-transform: uppercase;
+    font-weight: 800;
+    padding-right: 12px;
+    color: #4d716a;
+    font-size: 1.5rem; 
+}
+.subject-details__date-data {
+    color: #678983;
+    font-size: 1.5rem; 
+}
+
+.subject-details__description-container {
+    margin-bottom: 24px;
+}
+
+.subject-details__description-data {
+    color: #678983;
+    font-size: 1.2rem; 
+}
+
+.subject-details__notes-container {
+    
+}
+.subject-details__note {
+    border: 2px solid lightgray;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: 0.2s ease-out;
+}
+
+.subject-details__note:hover {
+    border: 2px solid #678983;
+    cursor: pointer;
+}
+
+.subject-details__note-title {
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #4d716a;
+    font-size: 1.5rem; 
+    margin: 0;
+}
+
+.subject-details__note-description {
+    width: 100%;
+    word-wrap: break-word;
+    overflow-y: auto;
+    color: #678983;
+    margin-left: 4px;
+}

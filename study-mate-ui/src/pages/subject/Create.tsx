@@ -34,13 +34,13 @@ const CreateSubject = () => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Name</label>
               <div>
-                <input name="name" className="w-100" />
+                <input name="name" className="form-control w-100" />
               </div>
             </div>
             <div className="ms-sm-1 w-100">
               <label className="form-label">Grade</label>
               <div>
-                <input name="grade" type="number" className="w-100" />
+                <input name="grade" type="number" className="form-control w-100" />
               </div>
             </div>
           </div>
@@ -48,13 +48,13 @@ const CreateSubject = () => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Start Date</label>
               <div>
-                <input name="startDate" type="date" className="w-100" />
+                <input name="startDate" type="date" className="form-control w-100" />
               </div>
             </div>
             <div className="ms-sm-1 w-100">
               <label className="form-label">End Date</label>
               <div>
-                <input name="endDate" type="date" className="w-100" />
+                <input name="endDate" type="date" className="form-control w-100" />
               </div>
             </div>
           </div>
@@ -62,8 +62,8 @@ const CreateSubject = () => {
             <div className="w-100">
               <label className="form-label">Status</label>
               <div>
-                <select name="status" className="w-100">
-                  <option value={-1}>Select Status</option>
+                <select name="status" className="form-select w-100">
+                  <option key={"-1"} value={0}>Select Status</option>
                   {Object.entries(StatusEnumObject).map(([name, id]) => (
                     <option key={id} value={id}>
                       {name}
@@ -76,7 +76,7 @@ const CreateSubject = () => {
           <div className="w-100 mb-3">
             <label className="form-label">Description</label>
             <div>
-              <textarea name="description" className="w-100" />
+              <textarea name="description" className="form-control w-100" />
             </div>
           </div>
           <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">Add Subject</button>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Button from '../button/Button';
-import DeleteConfirmation from './DeleteConfirmation';
+import DeleteConfirmation from '../UI/DeleteConfirmation';
 import { GetAllSubjectsItemResponse, SubjectApi } from '../../api';
+import "../UI/Buttons.css";
+import "./SubjectComponent.css"
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   subject: GetAllSubjectsItemResponse;
@@ -22,9 +24,19 @@ const styles = {
 
 const SubjectComponent: React.FC<Props> = ({ subject, onDelete }) => {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const navigate = useNavigate();
+
+    const subjectDetailsHandler = () => {
+      navigate(`${subject.id}`);
+    }
+
+    const subjectEditHandler = () => {
+      navigate(`${subject.id}/edit`);
+    }
 
     const showDeleteConfirmationHandler = () => {
       setShowDeleteConfirmation(true);
+      
     }
 
     const deleteHandler = () => {
@@ -37,29 +49,29 @@ const SubjectComponent: React.FC<Props> = ({ subject, onDelete }) => {
     }
 
     return (
-      <div className="col-12 col-md-4 col-lg-4 p-3 mb-4" style={{ height: '280px' }}>
-        {showDeleteConfirmation && <DeleteConfirmation closeModal={closeDeleteConfirmationHandler} item={subject} actionHandler={deleteHandler}/>}
-        <Link
-          className="text-decoration-none card bg-secondary bg-opacity-25 border-0 rounded rounded-3 px-5 py-4 h-100 d-flex flex-column justify-content-between mb-2"
-          to={{
-            pathname: `/subjects/${subject.id}`
-          }}
-        >
+      <div className="subject__container col-12 col-md-4 col-lg-4 mb-4" onClick={subjectDetailsHandler}>
+        {showDeleteConfirmation && <DeleteConfirmation closeModal={closeDeleteConfirmationHandler} item={subject.name} actionHandler={deleteHandler}/>}
+        <div className="subject__name">
+            {subject.name}
+        </div>
           <div 
-            className="text-secondary"
+            className="subject__description"
             style={styles}
           >
             {subject.description}
           </div>
-          <div className="d-flex justify-content-between">
-            <Link to={`${subject.id}/edit`}>
-              <Button className="bg-white mb-2 text-dark" label="Edit" />
-            </Link>
-            <Link to=""><Button className="mb-2" buttonType="danger" label="Delete" onClick={showDeleteConfirmationHandler}/></Link>
-          </div>
-        </Link>
-        <div className="fw-bold text-dark mt-2 text-center">
-            {subject.name}
+          <div className="subject__buttons">
+            <Button className="subject__buttons-edit button__edit " label="Edit" onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              subjectEditHandler();
+            }}/>
+            <Button className="subject__buttons-delete button__delete" buttonType="danger" label="Delete" onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              showDeleteConfirmationHandler();
+
+            }}/>
           </div>
       </div>
     );

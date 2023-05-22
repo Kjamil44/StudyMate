@@ -2,24 +2,51 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     background-color: #0000007a;
     z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    animation: backdrop-anim 0.5s;
 }
 
+
+
 .modal-content {
-    z-index: 101;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+    z-index: 102;
     width: 400px;
     background-color: white;
     border-radius: 18px;
+    animation: modal-anim 0.5s;
+    cursor: default;
 }
 
 .btn {
     width: 72px;
     height: 48px;
+}
+
+@keyframes backdrop-anim {
+    from {
+        background-color: transparent;
+    }
+    to {
+        background-color: #0000007a;
+    }
+}
+
+@keyframes modal-anim {
+    from {
+        opacity: 0;
+        top: 47%;
+    }
+    to {
+        opacity: 1;
+        top: 50.1%;
+        
+    }
 }

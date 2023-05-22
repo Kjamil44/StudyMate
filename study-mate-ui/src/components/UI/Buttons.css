@@ -1,0 +1,108 @@
+.button__delete {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid transparent !important;
+    width: 5.5rem;
+    border: none;
+    transition: 0.2s ease-out;
+    background-color: #678983 !important;
+    margin: 12px 12px;
+    text-align: center;
+    color: white;
+    border-radius: 6px;
+
+    padding: 8px;
+    text-decoration: none;
+}
+
+.button__delete:hover {
+    background-color: #4d6162 !important;
+}
+
+.button__edit {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 5.5rem;
+    border: 2px solid #77a598 !important;
+    background-color: white !important;
+    color: #4d6162;
+    padding-bottom: 4px;
+    transition: 0.2s ease-out;
+    border-radius: 6px;
+    margin: 12px 12px;
+    text-align: center;
+
+
+    
+    padding: 8px;
+    text-decoration: none;
+}
+
+.button__edit:hover {
+
+    background-color: #77a598 !important;
+    color: white;
+}
+
+.button__sidenav {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 5.5rem;
+    border: none;
+    background-color: white !important;
+    color: #4d6162;
+    padding-bottom: 4px;
+    transition: 0.5s cubic-bezier(0.25, 1, 0.5, 1) 25ms;
+    border-radius: 6px;
+    margin: 12px 12px;
+    text-align: center;
+    font-weight: 600;
+    padding: 8px;
+    text-decoration: none;
+    background: linear-gradient(90deg, #678983 50%, transparent 50%) no-repeat;
+    background-position-x: -150px;
+    background-size: 300px;
+}
+.button__sidenav:focus {
+    color: #4d6162;
+}
+
+.button__sidenav:hover {
+    color: white;
+    background-position-x: 0px;
+}
+
+
+.button__cancel {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 5.5rem;
+    border: 2px solid #678983 !important;
+    background-color: white !important;
+    background: linear-gradient(90deg, #678983 50%, transparent 50%) no-repeat;
+    background-position-x: -100px;
+    transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    background-size: 200px 200px;;
+    color: #4d6162;
+    padding-bottom: 4px;
+    background-clip: margin-box;
+    margin: 12px 12px;
+    text-align: center;
+    overflow: hidden;
+    
+
+}
+.button__cancel:hover {
+    border: 2px solid #678983 !important;
+    background-position-x: 0px;
+    color: white;
+}

@@ -3,20 +3,31 @@ import './Modal.css'
 
 type Props = {
   children: React.ReactNode,
-  className?: string
+  className?: string,
+  closeModal?: () => void
 }
 
-const Modal: React.FC<Props> = ({children, className}) => {
+const Modal: React.FC<Props> = ({children, className, closeModal}) => {
 
   const classes = 'modal-content ' + className; 
 
   return (
-    <div className='backdrop'>
-        <div className={classes}>
-          { children }
-        </div>
+    <div>
+    <div className='backdrop' onClick={(e)=>{
+      e.preventDefault(); 
+      e.stopPropagation();
+      if(closeModal) closeModal();
+      }}>
     </div>
-
+    <div className="modal-container">
+      <div className={classes} onClick={(e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        }}>
+          { children }
+      </div>
+    </div>
+    </div>
   )
 }
 

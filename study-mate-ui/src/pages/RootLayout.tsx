@@ -5,6 +5,11 @@ import '../App.css';
 import studyMateLogo from '../assets/studymate2.png';
 import Button from '../components/button/Button';
 
+const imgStyle = {
+  filter: "invert(100%) sepia(100%) saturate(0%) brightness(100%) contrast(100%)",
+  height: "34px",
+}
+
 const RootLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,22 +36,25 @@ const RootLayout = () => {
   };
 
     return (
-      <div className="App">
-      <Navbar className="d-lg-flex justify-content-lg-end" expand="lg">
-        <Navbar.Brand href="/subjects" className="text-white ms-3 d-lg-none">Study Mate</Navbar.Brand>
-        <div className='position-relative mx-auto'>
-          <img className='position-relative' draggable="false" alt='' style={{height: "30px"}} src={studyMateLogo}/>
-        </div>
-        <Navbar.Toggle onClick={toggleSidebar} className="bg-white me-3 d-lg-none" />
+      <div>
+      <Navbar className="ms-auto d-flex justify-content-between" expand="lg" style={{width: "100%", boxShadow: "0px 0px 4px black", backgroundColor: "#3e5853"}}>
+        <div>
+      <Navbar.Brand href="/subjects" className="text-white ms-3 d-lg-none">Study Mate</Navbar.Brand>
+      </div>
+          <div className='position-relative ms-5 ps-3' style={{height: "40px", display: "flex", alignItems: "center"}}>
+            <img  className='position-relative' draggable="false" alt='' style={imgStyle} src={studyMateLogo}/>
+          </div>
+          <Navbar.Toggle onClick={toggleSidebar} className="bg-white me-3 d-lg-none" />
+        
         <NavDropdown align={"end"} title="User" id="basic-nav-dropdown-start" className="text-white d-none d-lg-inline me-3">
             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
         </NavDropdown>
       </Navbar>
       <div className={`sidebar${showSidebar ? ' show' : ''}`}>
         <Nav className="flex-column">
-          <Nav.Link as={Link} to="/subjects" className="bg-white text-dark mx-4 rounded rounded-3 mb-3">Subjects</Nav.Link>
-            {subject && <Nav.Link as={Link} to={`/subjects/${subject}/tasks`} className="bg-white text-dark mx-4 rounded rounded-3 mb-3">Tasks</Nav.Link>}
-          <Nav.Link as={Link} to="/notes" className="bg-white text-dark mx-4 rounded rounded-3 mb-3">Notes</Nav.Link>
+          <Nav.Link as={Link} to="/subjects" className="button__sidenav mx-4 rounded rounded-3 mb-3 w-75 font-weight">Subjects</Nav.Link>
+            {subject && <Nav.Link as={Link} to={`/subjects/${subject}/tasks`} className="button__sidenav mx-4 rounded rounded-3 mb-3 w-75 font-weight">Tasks</Nav.Link>}
+          <Nav.Link as={Link} to="/notes" className="button__sidenav mx-4 rounded rounded-3 mb-3 w-75 font-weight">Notes</Nav.Link>
           <Button label="Logout" className="mt-3 text-dark bg-white mx-4 rounded rounded-3 d-lg-none" onClick={handleLogout}/>
         </Nav>
       </div>
