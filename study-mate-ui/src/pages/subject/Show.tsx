@@ -10,6 +10,8 @@ import {
 } from '../../api';
 import EditNote from '../notes/EditNote';
 import { formatDate } from '../../utils';
+import "./SubjectPage.css";
+import "../../components/UI/Buttons.css";
 
 interface Props {}
 
@@ -58,62 +60,54 @@ const ShowSubject: React.FC<Props> = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ height: '90vh' }}>
-      <div
-        className="card bg-secondary bg-opacity-25 rounded rounded-2 p-3"
-        style={{ width: '80%', height: '80%', overflow: 'auto' }}
-      >
-        <div className="d-sm-flex justify-content-between mb-2">
-          <div className="w-100">
-            <label className="form-label fw-bold">Name</label>
-            <div>
-              <div>{subject?.name}</div>
+    <div className="subject-details">
+        <div>
+          <div  className="subject-details__header">
+
+          
+          <div className="subject-details__name">{subject?.name}</div>
+          <div className="subject-status__container">
+            <div className="subject-status" style={subject?.status === 0 ? {backgroundColor: '#d43535', color: 'white'} : subject?.status === 1 ? {backgroundColor: '#e9e94d', color: 'black'} : {backgroundColor: '#30bc5c', color: 'black'}}>{Object.keys(StatusEnumObject)[subject?.status ?? 0]}</div>
+          </div>
+          </div>
+          <div className="subject-details__grade-container">
+            <h1 className="subject-details__grade-label">Grade: </h1>
+            <div className="subject-details__grade-data">{subject?.grade}</div>
+          </div>
+        </div>
+
+        <div className="subject-details__date-container">
+            <div className='d-flex'>
+              <label className="subject-details__label">Start Date: </label>
+              <div className="subject-details__date-data">{formatDate(subject?.startDate.toString())}</div>
             </div>
-          </div>
-          <div className="w-100">
-            <label className="form-label fw-bold">Grade</label>
-            <div>
-              <div>{subject?.grade}</div>
-            </div>
+          <div className='d-flex'>
+            <label className="subject-details__label">End Date: </label>
+            <div className="subject-details__date-data">{formatDate(subject?.endDate.toString())}</div>
           </div>
         </div>
-        <div className="d-sm-flex justify-content-between mb-2">
-          <div className="w-100">
-            <label className="form-label fw-bold">Start Date</label>
-            <div>{formatDate(subject?.startDate.toString())}</div>
-          </div>
-          <div className="w-100">
-            <label className="form-label fw-bold">End Date</label>
-            <div>{formatDate(subject?.endDate.toString())}</div>
-          </div>
+        <div className='subject-details__description-container'>
+          <label className="subject-details__label">Description</label>
+          <div className="subject-details__description-data">{subject?.description}</div>
         </div>
-        <div className="mb-2">
-          <div className="w-100">
-            <label className="form-label fw-bold">Status</label>
-            <div>{Object.keys(StatusEnumObject)[subject?.status ?? 0]}</div>
-          </div>
-        </div>
-        <div className="w-100 mb-3">
-          <label className="form-label fw-bold">Description</label>
-          <div>{subject?.description}</div>
-        </div>
-        <div className="w-100 mb-3">
-          <label className="form-label fw-bold">Notes</label>
+        <div className="subject-details__notes-container">
+          <label className="subject-details__label">Notes</label>
           {notes.map((note) => (
             <div
               onClick={() => handleEditNoteClick(note)}
-              className="mt-2 mb-3"
-              style={{ padding: '10px', borderRadius: '10px', background: '#B5B5B5', cursor: 'pointer' }}
+              className="subject-details__note"
             >
-              <label className="form-label fw-bold">{note.title}</label>
-              <div>{note.description}</div>
+              <label className="subject-details__note-title">{note.title}</label>
+              <div className='subject-details__note-description'>{note.description}</div>
             </div>
           ))}
+
           <Link to="/notes/create" state={{ belongsId: id, belongsName: 'subject' }}>
-            Add note
+            <button className='button__edit' style={{width: '100px', height: '48px', padding: '8px', marginLeft: '0px'}}>Add note</button>
           </Link>
+
+
         </div>
-      </div>
       {isOpen && (
         <div
           className="modal"

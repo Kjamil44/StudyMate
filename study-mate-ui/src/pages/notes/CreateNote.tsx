@@ -20,7 +20,7 @@ const CreateNote = () => {
       belongsName: location.state?.belongsName ?? "User",
     };
 
-    NoteApi.createNote(request).then(() => navigate('/notes', { state: {} }));
+    NoteApi.createNote(request).then(() => navigate(-1));
   };
 
   return (
@@ -31,14 +31,14 @@ const CreateNote = () => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Title</label>
               <div>
-                <input name="title" className="w-100" />
+                <input name="title" className="form-control w-100" />
               </div>
             </div>
           </div>
           <div className="w-100 mb-3">
             <label className="form-label">Description</label>
             <div>
-              <textarea name="description" className="w-100" rows={8} />
+              <textarea name="description" className="form-control w-100" rows={8} />
             </div>
           </div>
           <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">Add Note</button>

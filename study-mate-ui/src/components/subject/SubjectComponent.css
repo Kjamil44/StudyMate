@@ -1,0 +1,96 @@
+
+.subject__container {
+    background-color: white;
+    border: 3px solid lightgray;
+    padding: 0;
+    margin: 0 12px;
+    margin-top: 24px;
+    border-radius: 12px;
+    height: 280px;
+    font-family: "Montserrat", sans-serif;
+    transition: 0.2s ease-out;
+    overflow: hidden;
+    width: 400px;
+}
+
+.subject__container:hover {
+    border: 3px solid #678983;
+    cursor: pointer;
+}
+
+.subject__container-link {
+    text-decoration: none;
+}
+
+.subject__name {
+    border-bottom: 1px solid lightgray;
+    padding: 0;
+    padding-bottom: 8px;
+    width: 90%;
+    margin: 0px auto;
+    color: #4d716a;
+    font-weight: bold;
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+}
+
+.subject__description {
+    width: 90%;
+    margin: 0px auto;
+    padding-left: 12px;
+    padding-top: 0.5rem;
+    padding-bottom: 0;
+    color: #678983;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.subject__buttons {
+    opacity: 0;
+    position: relative;
+    height: 100px;
+    top: -12px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    background: linear-gradient(transparent, rgba(81, 119, 108, 0.125));
+    transition: 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.subject__container:hover .subject__buttons {
+    opacity: 100;
+}
+
+
+.subject__buttons-edit {
+    padding: 0;
+    position: relative;
+    top: 100px;
+    margin: 12px 12px;
+    transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: rotateY(90deg);
+    opacity: 0;
+}
+.subject__buttons-delete {
+    padding: 0;
+    position: relative;
+    top: 100px;
+    margin: 12px 12px;
+    transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: rotateY(90deg);
+    opacity: 0.55;
+}
+
+.subject__container:hover .subject__buttons-edit {
+    transform: rotateY(0deg);
+    position: relative;
+    top: 0px !important;
+    opacity: 1;
+}
+.subject__container:hover .subject__buttons-delete {
+    transform: rotateY(0deg);
+    position: relative;
+    top: 0px !important;
+    opacity: 1;
+}

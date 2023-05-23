@@ -52,13 +52,13 @@ const EditSubject = () => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Name</label>
               <div>
-                <input name="name" defaultValue={subject?.name} className="w-100" />
+                <input name="name" defaultValue={subject?.name} className="form-control w-100" />
               </div>
             </div>
             <div className="ms-sm-1 w-100">
               <label className="form-label">Grade</label>
               <div>
-                <input name="grade" type="number" min={1} max={10} defaultValue={subject?.grade} className="w-100" />
+                <input name="grade" type="number" min={1} max={10} defaultValue={subject?.grade} className="form-control w-100" />
               </div>
             </div>
           </div>
@@ -66,13 +66,13 @@ const EditSubject = () => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Start Date</label>
               <div>
-                <input name="startDate" defaultValue={formatDate(subject?.startDate.toString())} type="date" className="w-100" />
+                <input name="startDate" defaultValue={formatDate(subject?.startDate.toString())} type="date" className="form-control w-100" />
               </div>
             </div>
             <div className="ms-sm-1 w-100">
               <label className="form-label">End Date</label>
               <div>
-                <input name="endDate" defaultValue={formatDate(subject?.endDate.toString())} type="date" className="w-100" />
+                <input name="endDate" defaultValue={formatDate(subject?.endDate.toString())} type="date" className="form-control w-100" />
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@ const EditSubject = () => {
             <div className="w-100">
               <label className="form-label">Status</label>
               <div>
-                <select name="status" defaultValue={subject?.status} className="w-100">
+                <select name="status" defaultValue={subject?.status} className="form-select w-100">
                   {Object.entries(StatusEnumObject).map(([name, id]) => (
                     <option value={id} selected={id === subject?.status}>
                       {name}
@@ -93,7 +93,7 @@ const EditSubject = () => {
           <div className="w-100 mb-3">
             <label className="form-label">Description</label>
             <div>
-              <textarea name="description" defaultValue={subject?.description} className="w-100" />
+              <textarea name="description" defaultValue={subject?.description} className="form-control w-100" />
             </div>
           </div>
           <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">Update Subject</button>

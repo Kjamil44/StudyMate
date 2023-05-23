@@ -64,17 +64,17 @@ const EditNote = ({ isModal, saveNote, note: propNote }: EditNoteProps) => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Title</label>
               <div>
-                <input name="title" defaultValue={note?.title} className="w-100" />
+                <input className="form-control w-100" name="title" defaultValue={note?.title} />
               </div>
             </div>
           </div>
           <div className="w-100 mb-3">
             <label className="form-label">Description</label>
             <div>
-              <textarea name="description" defaultValue={note?.description} className="w-100" rows={8} />
+              <textarea className="form-control w-100" name="description" defaultValue={note?.description} rows={8} />
             </div>
           </div>
-          <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">Save Note</button>
+          <button className="text-center border-0 text-white p-2 bg-secondary rounded-3">Save Note</button>
         </form>
       </div>
     </div>

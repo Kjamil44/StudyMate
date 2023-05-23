@@ -50,7 +50,7 @@ const EditTask = () => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Title</label>
               <div>
-                <input name="title" defaultValue={task?.title} className="w-100" />
+                <input name="title" defaultValue={task?.title} className="form-control w-100" />
               </div>
             </div>
             <div className="ms-sm-1 w-100">
@@ -60,7 +60,7 @@ const EditTask = () => {
                   name="dueDate"
                   defaultValue={formatDate(task?.dueDate.toString())}
                   type="date"
-                  className="w-100"
+                  className="form-control w-100"
                 />
               </div>
             </div>
@@ -69,7 +69,7 @@ const EditTask = () => {
             <div className="me-sm-1  w-100">
               <label className="form-label">Priority Levels</label>
               <div>
-                <select name="priorityLevel" defaultValue={task?.priorityLevel} className="me-sm-1 w-100">
+                <select name="priorityLevel" defaultValue={task?.priorityLevel} className="form-select me-sm-1 w-100">
                   <option value={-1}>Select Priority</option>
                   {Object.entries(PriorityLevelObject).map(([name, id]) => (
                     <option value={id} selected={id === task?.priorityLevel}>
@@ -82,7 +82,7 @@ const EditTask = () => {
             <div className="ms-sm-1 w-100">
               <label className="form-label">Status</label>
               <div>
-                <select name="status" defaultValue={task?.status} className="me-sm-1 w-100">
+                <select name="status" defaultValue={task?.status} className="form-select me-sm-1 w-100">
                   <option value={-1}>Select Status</option>
                   {Object.entries(StatusEnumObject).map(([name, id]) => (
                     <option value={id} selected={id === task?.status}>
@@ -96,7 +96,7 @@ const EditTask = () => {
           <div className="w-100 mb-3">
             <label className="form-label">Description</label>
             <div>
-              <textarea name="description" defaultValue={task?.description} className="w-100" />
+              <textarea name="description" defaultValue={task?.description} className="form-control w-100" />
             </div>
           </div>
           <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">Update Task</button>

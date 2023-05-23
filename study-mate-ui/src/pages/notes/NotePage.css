@@ -1,0 +1,28 @@
+.notes-header__container {
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 28px;
+
+}
+
+.notes-header__text {
+    color: #4d716a; 
+    font-weight: 400;
+    font-size: 48px;
+    width: 90%;
+    margin: 0px auto;
+    padding-bottom: 24px;
+    border-bottom: 2px solid lightgray;
+}
+
+.notes-sort {
+    margin: 24px 96px;
+    margin-bottom: 12px;
+    width: 1000px;
+    padding-bottom: 12px;
+}
+
+.notes-list {
+    margin-left: 78px;
+    display: flex;
+    flex-wrap: wrap;
+}

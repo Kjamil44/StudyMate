@@ -21,6 +21,7 @@ const CreateTask = () => {
       status: values.status.value ?? '',
     };
 
+
     TaskApi.createTask(request).then(() => navigate(`/subjects/${subject}/tasks`));
   };
   
@@ -32,13 +33,13 @@ const CreateTask = () => {
             <div className="me-sm-1 w-100">
               <label className="form-label">Title</label>
               <div>
-                <input name="title" className="w-100" />
+                <input name="title" className="form-control w-100" />
               </div>
             </div>
             <div className="ms-sm-1 w-100">
               <label className="form-label">Due Date</label>
               <div>
-                <input name="dueDate" type="date" className="w-100" />
+                <input name="dueDate" type="date" className="form-control w-100" />
               </div>
             </div>
           </div>
@@ -46,7 +47,7 @@ const CreateTask = () => {
             <div className="me-sm-1  w-100">
               <label className="form-label">Priority Levels</label>
               <div>
-                <select name="priorityLevel" className="me-sm-1 w-100">
+                <select name="priorityLevel" className="form-select me-sm-1 w-100">
                   <option value={-1}>Select Priority</option>
                   {Object.entries(PriorityLevelObject).map(([name, id]) => (
                     <option value={id}>{name}</option>
@@ -57,10 +58,10 @@ const CreateTask = () => {
             <div className="ms-sm-1 w-100">
               <label className="form-label">Status</label>
               <div>
-                <select name="status" className="me-sm-1 w-100">
-                  <option value={-1}>Select Status</option>
+                <select name="status" className="form-select me-sm-1 w-100">
+                  <option key={"-1"}value={0}>Select Status</option>
                   {Object.entries(StatusEnumObject).map(([name, id]) => (
-                    <option value={id}>{name}</option>
+                    <option key={id}  value={id}>{name}</option>
                   ))}
                 </select>
               </div>
@@ -69,7 +70,7 @@ const CreateTask = () => {
           <div className="w-100 mb-3">
             <label className="form-label">Description</label>
             <div>
-              <textarea name="description" className="w-100" />
+              <textarea name="description" className="form-control w-100" />
             </div>
           </div>
           <button className="text-center border-0 text-white py-2 bg-secondary rounded-3">Add Task</button>

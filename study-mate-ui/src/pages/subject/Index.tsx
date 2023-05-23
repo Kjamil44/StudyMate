@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { GetAllSubjectsItemResponse, SubjectApi } from '../../api';
 import SubjectComponent from '../../components/subject/SubjectComponent';
 import AddNew from '../../components/AddNew';
-
+import "./SubjectPage.css"
 
 const SubjectIndexPage: React.FC = () => {
   const [subjects, setSubjects] = useState<GetAllSubjectsItemResponse[]>([]);
@@ -22,7 +22,11 @@ const SubjectIndexPage: React.FC = () => {
   
 
   return (
-    <div className="container vh-100">
+    <>
+    <div className='subjects-header__container'>
+      <h1 className='subjects-header__text'>SUBJECTS</h1>
+    </div>
+    <div className="container">
       <div className="row">
         {subjects?.map((subject, i) => (
           <SubjectComponent key={i} onDelete={getAllSubjects} subject={subject} />
@@ -30,6 +34,7 @@ const SubjectIndexPage: React.FC = () => {
         <AddNew title='Add subject'/>
       </div>
     </div>
+    </>
   );
 };
 

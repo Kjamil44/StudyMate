@@ -1,0 +1,47 @@
+.add-new__container {
+    background-color: white;
+    border: 3px dashed lightgray;
+    padding: 0;
+    margin: 8px 0px;
+    border-radius: 12px;
+    height: 280px;
+    font-family: "Montserrat", sans-serif;
+    transition: 0.2s ease-out;
+    overflow: hidden;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+
+
+
+.add-new__text {
+    position: relative;
+    opacity: 0;
+    top: -6px;
+    color: #678983;
+    font-weight: bold;
+    transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.add-new__icon {
+    position: relative;
+    width: 40px;
+    opacity: 0.4;
+    transition: 0.25s ease-out;
+    top: 8px;
+}
+
+.add-new__container:hover .add-new__text {
+    opacity: 1;
+    top: 8px;
+}
+
+.add-new__container:hover .add-new__icon {
+    opacity: 1;
+    top: 0px;
+}
