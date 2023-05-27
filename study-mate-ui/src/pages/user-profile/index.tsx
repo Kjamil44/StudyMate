@@ -102,7 +102,7 @@ const UserIndexPage: React.FC = () => {
               <label htmlFor="name" style={{ color: '#678983', fontSize: '2.0rem', fontWeight: 'bold' }}>
                 Grade
               </label>
-              <p style={{ color: '', fontSize: '1.7rem', fontWeight: 'bold' }}>{grade}</p>
+              <p style={{ color: '', fontSize: '1.7rem', fontWeight: 'bold' }}>{Number.isNaN(grade) ? "" : grade}</p>
             </div>
           </div>
         </div>

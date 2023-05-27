@@ -19,7 +19,7 @@ const CreateSubject = () => {
       startDate: values.startDate.value ?? '',
       endDate: values.endDate.value ?? '',
       grade: values.grade.value ?? '',
-      status: values.grade.value ?? '',
+      status: values.status.value ?? '',
       userId: localStorage.getItem('userId') ?? '',
     };
 
