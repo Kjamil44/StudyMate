@@ -37,7 +37,7 @@ const RootLayout = () => {
     };
 
     getUserData();
-  });
+  }, []);
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
