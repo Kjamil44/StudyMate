@@ -74,7 +74,7 @@ const deleteNote = (id: string): Promise<FetchResponse<DeleteNoteResponse>> => {
 export const NoteApi = { getAllNotes, getNote, createNote, updateNote, deleteNote };
 
 const subjectsUrl = '/subjects';
-const GET_ALL_SUBJECTS = `${subjectsUrl}/all`;
+const GET_ALL_SUBJECTS = `${subjectsUrl}/all/${localStorage.getItem("userId")}`;
 const GET_SUBJECT = `${subjectsUrl}/{id}`;
 const CREATE_SUBJECT = `${subjectsUrl}/create`;
 const UPDATE_SUBJECT = `${subjectsUrl}/update/{id}`;

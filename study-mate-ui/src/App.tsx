@@ -16,6 +16,7 @@ import CreateTask from './pages/task/Create';
 import EditTask from './pages/task/Edit';
 import SubjectTasks from './pages/task/Index';
 import { Suspense } from 'react';
+import UserIndexPage from './pages/user-profile';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       { path: 'notes/create', element: <CreateNote /> },
       { path: 'notes/edit/:id', element: <EditNote isModal={false} /> },
       // { path: 'notes/:subject', element: <Note subject={subjects[0]} /> },
+      { path: 'profile', element: <UserIndexPage /> },
     ],
   },
   {

@@ -9,6 +9,7 @@ namespace StudyMate.API.Handlers.SubjectHandlers
     {
         public class Request : IRequest<Response>
         {
+            public Guid UserId { get; set; }
         }
         public class Response
         {
@@ -31,7 +32,7 @@ namespace StudyMate.API.Handlers.SubjectHandlers
             public Handler(IDocumentSession session) => _session = session;
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-                var subjects = await _session.Query<Subject>().ToListAsync();
+                var subjects = await _session.Query<Subject>().Where(subject => subject.UserId.Equals(request.UserId)).ToListAsync();
                 if (!subjects.Any())
                     throw new Exception("No Subjects available");
 
