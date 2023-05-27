@@ -18,13 +18,12 @@ const CreateTask = () => {
       dueDate: values.dueDate.value ?? '',
       title: values.title.value ?? '',
       priorityLevel: values.priorityLevel.value ?? '',
-      status: values.status.value ?? '',
+      status: 0 ?? '',
     };
-
 
     TaskApi.createTask(request).then(() => navigate(`/subjects/${subject}/tasks`));
   };
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="d-flex justify-content-center align-items-center" style={{ height: '90vh' }}>
@@ -51,17 +50,6 @@ const CreateTask = () => {
                   <option value={-1}>Select Priority</option>
                   {Object.entries(PriorityLevelObject).map(([name, id]) => (
                     <option value={id}>{name}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="ms-sm-1 w-100">
-              <label className="form-label">Status</label>
-              <div>
-                <select name="status" className="form-select me-sm-1 w-100">
-                  <option key={"-1"}value={0}>Select Status</option>
-                  {Object.entries(StatusEnumObject).map(([name, id]) => (
-                    <option key={id}  value={id}>{name}</option>
                   ))}
                 </select>
               </div>

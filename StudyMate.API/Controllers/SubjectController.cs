@@ -11,8 +11,8 @@ namespace StudyMate.API.Controllers
     private readonly ISender _sender;
     public SubjectController(ISender sender) => _sender = sender;
 
-    [HttpGet("all")]
-    public async Task<IActionResult> GetSubjects() => Ok(await _sender.Send(new GetSubjects.Request()));
+    [HttpGet("all/{userId}")]
+    public async Task<IActionResult> GetSubjects(Guid userId) => Ok(await _sender.Send(new GetSubjects.Request { UserId = userId }));
 
     [HttpGet("{subjectId}")]
     public async Task<IActionResult> GetSubject(Guid subjectId) => Ok(await _sender.Send(new GetSubject.Request { Id = subjectId }));
