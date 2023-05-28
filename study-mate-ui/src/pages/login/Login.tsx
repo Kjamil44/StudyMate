@@ -46,7 +46,7 @@ const Login: React.FC = () => {
         >
           <img src={StudyMateLogo} alt="Logo" className="w-100" />
           <p className="text-white">
-            Stay on top of your students with ease... organize, prioritize and conquer with <strong>Study Mate!</strong>
+            Stay on top of your studies with ease... organize, prioritize and conquer with <strong>Study Mate!</strong>
           </p>
         </div>
         <div className="col-7 p-5 d-flex flex-column justify-content-center">
