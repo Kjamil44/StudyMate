@@ -20,10 +20,10 @@ services:
     container_name: postgres
     image: postgres:15.2-alpine
     ports:
-      - 6969:5432
+      - 5432:5432
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=1234
+      - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=StudyMateDb
   study-mate-nginx:
     container_name: nginx

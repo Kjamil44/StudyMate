@@ -74,14 +74,15 @@ const deleteNote = (id: string): Promise<FetchResponse<DeleteNoteResponse>> => {
 export const NoteApi = { getAllNotes, getNote, createNote, updateNote, deleteNote };
 
 const subjectsUrl = '/subjects';
-const GET_ALL_SUBJECTS = `${subjectsUrl}/all/${localStorage.getItem("userId")}`;
+const GET_ALL_SUBJECTS = `${subjectsUrl}/all/{userId}`;
 const GET_SUBJECT = `${subjectsUrl}/{id}`;
 const CREATE_SUBJECT = `${subjectsUrl}/create`;
 const UPDATE_SUBJECT = `${subjectsUrl}/update/{id}`;
 const DELETE_SUBJECT = `${subjectsUrl}/delete/{id}`;
 
-const getAllSubjects = async (): Promise<FetchResponse<GetAllSubjectsResponse>> => {
-  return api.get(GET_ALL_SUBJECTS).then((response) => createFetchResponse(response));
+const getAllSubjects = (): Promise<FetchResponse<GetAllSubjectsResponse>> => {
+  const userId = localStorage.getItem('userId');
+  return api.get(GET_ALL_SUBJECTS.replace('{userId}', userId ?? '')).then((response) => createFetchResponse(response));
 };
 
 const getSubject = (id: string): Promise<FetchResponse<GetSubjectReponse>> => {
